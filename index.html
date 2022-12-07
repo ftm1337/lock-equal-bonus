@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+<meta charset="UTF-8">
+<meta name="description" content="veEQUAL Lock Bonus: Get 20% extra ve by locking more EQUAL">
+<meta name="keywords" content="Ftm.guru, Guru Network, Finance, Decentralized Finance, defi, Airdrop, EQUAL, veNFT, Solidly, Equalizer, Fantom Opera, FTM">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  <title>Equalizer Lock Bonus: Get 20% extra ve by locking more EQUAL</title>
+  <link rel="shortcut icon" href="https://ftm.guru/img/64.png"/>
+  <link rel="stylesheet" href="index.css"/>
+  <style>
+  </style>
+</head>
+  <body>
+    <div class="partnership">
+      <h1><span>veEQUAL Lock Bonus</span></h1>
+      <h2>Get 20% extra ve by locking more EQUAL</h2>
+    </div>
+    <div class="mechanism">
+      <div class="amount">
+      	<br>
+      	<p id="p_cw"><span id="cw" onclick="cw()">Hello 👋 <span id="cw_og">Connect wallet!</span></p>
+      	<div align="center">
+      	  <select class="equal-gradient" id="nft-sel" onchange="quote()">
+      	    <option value="" selected>Choose a NFT</option>
+      	  </select>
+      	</div>
+        <p><span id="nft-bal">Balance: ? veNFT</span></p>
+      </div>
+      <div class="input-amount">
+      	<br>Available Balance:
+      	<br><br>
+        <img src="https://equalizer.exchange/assets/logo/EQUAL.png"/>
+        <span class="nft-amtl" id="nft-amt">? EQUAL</span>
+        <br><br>
+      	<br>How much do you want to lock?
+      	<br><br>
+        <span class="nft-amtl" id="nft-tl"><input placeholder="Amount to Lock" id="lock-amt"></span>
+        <br> <br>
+      	<br>
+        <div class="hr-nft"></div>
+        <br><br>
+        Eligible Bonus amount
+        <br><br>
+        <img src="https://equalizer.exchange/assets/logo/EQUAL.png"/>
+        <span class="nft-amtl" id="nft-offer">+? veEQUAL</span>
+      </div>
+      <br><br>
+      <div style="margin-top: -25px;" align="center">
+        <button class="submit equal-gradient" onclick="extend()"><span id="claim-offer">Extend old veNFT</span></button>
+        <button class="submit equal-gradient" onclick="initialize()"><span id="claim-offer">Create New veNFT</span></button>
+      </div>
+    </div>
+    <!--
+    <div class="analytics">
+	    <a onclick="notice('<h2>C0M1N6 500N</h2>')">Analytics</a>
+	    <a onclick="notice('<h2>C0M1N6 500N</h2>')">Multi-Merge</a>
+    </div>
+    -->
+
+
+
+    <div class="extra">
+      <small id="stats">
+		<br>
+		<br>Current Bonus: ? %
+    	<br>Available Incentives: ? EQUAL
+      </small>
+      <h1><span onclick='window.location="https://equalizer.exchange"'>Equalizer.Exchange</span></h1>
+      <!--<h3>Powered by Guru Network</h3>-->
+    </div>
+
+	<div align="center"class="lowerbar">
+		<a target="_blank" href="https://twitter.com/Equalizer0x"><img src="https://ftm.guru/icons/twitter.svg"></a>
+		<a target="_blank" href="https://discord.gg/KHnB28MMFH"><img src="https://ftm.guru/icons/discord.svg"></a>
+		<a target="_blank" href="https://medium.com/@Equalizer0x"><img src="https://ftm.guru/icons/medium.svg"></a>
+		<a target="_blank" href="https://www.coingecko.com/coins/equalizer-dex"><img src="https://ftm.guru/icons/gecko.svg"></a>
+		<a target="_blank" href="https://defillama.com/protocol/equalizer-exchange"><img src="https://ftm.guru/icons/defillama.svg"></a>
+	</div>
+	<br><br>
+
+	<div id="note" class="overlay">
+		<div class="popup">
+			<a class="close" href="#">&times;</a>
+			<div class="content" id="content1">
+				<h3>Equalizer: Lock Bonus</h3>
+				This dApp allows anyone to claim the Locking Bonus for adding additional or fresh new EQUAL to a max-lock of 26 weeks.
+				<br><br>You may either extend your old veNFTs by adding more EQUAL or chose to create a new veNFT instead.
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+<!-- IGNORE BELOW BLOCK : DEV LOGS -->
+    <div style="display:none">
+		<span id="cw_m"></span>
+		<div id="connect">
+			Please connect your web3 wallet.
+			<br><br>
+			<button onclick="cw()" id="btn-connect">Connect</button>
+		</div>
+		<div id="switch">
+			<b id="btn-switch" onclick="cw()">
+				<img src="img/wallet.svg" width="24px" style="position:relative;top:4px">
+				<span id="cw"></span>
+			</b>
+			<br>Balance: <b style="font-family:bold" id="usb-mtv">?</b> <img class="imgmtv" src="https://ftm.guru/icons/usdc.svg" width="20px" style="position:relative;top:4px">USDC<br>
+			<span style="font-size:0.9em">Wallet at <img class="imgmtv" src="https://ftm.guru/icons/ftm.svg" width="20px" style="position:relative;top:4px">Fantom Opera. <a href="index.html" style="color:aqua;font-family:bold">Change?</a></span>
+		</div>
+	</div>
+<!-- IGNORE ABOVE BLOCK : DEV LOGS -->
+
+    <div id="particle-container">
+  	  <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
+  	</div>
+      <script src="https://ftm.guru/ethers-5.2.umd.min.js" type="application/javascript" defer="true"></script>
+      <script src="https://ftm.guru/chart.min.js" type="application/javascript"></script>
+      <script src="https://ftm.guru/chartjs-adapter-date-fns.bundle.min.js" type="application/javascript"></script>
+      <script src="index.js?v=2"></script>
+      <script>
+        CHAINID = 250;
+        RPC_URL = "https://rpc.ftm.tools";
+        EXPLORE = "https://ftmscan.com/address/";
+        CHAIN_NAME = "Fantom Opera Mainnet";
+        VENFT = "0x8313f3551C4D3984FfbaDFb42f780D0c8763Ce94";
+        VENAMM = "0x6b4a8b8e5e83a0e1631e5c01faf44fb371bd2956";
+        WFTM = "0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83";
+        VME = "0x1633670d2ae6ebe5ff7d9d9c24a8c59b617e4884";
+        EQUAL = "0x3fd3a0c85b70754efc07ac9ac0cbbdce664865a6";
+      </script>
+  </body>
+</html>
