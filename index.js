@@ -287,9 +287,8 @@ async function extend() {
 	_offer = vme.offer(_am);
 	_current = veq.locked(_id);
 	_pqt = await Promise.all([_offer,_current]);
+	_q = [ _pqt[0], _pqt[1][0], Math.floor((Number(_pqt[1][1])*1e3-Date.Now()) /1e3/86400/7) ];
 	notice(`
-		_q = [ _pqt[0], _pqt[1][0], Math.floor((Number(_pqt[1][1])*1e3-Date.Now()) /1e3/86400/7) ];
-
 		<h3>Order Summary</h3>
 		<img style='height:20px;position:relative;top:4px' src="https://equalizer.exchange/assets/logo/EQUAL.png"> <b>Extending old Lock:</b><br>
 		Amount to add: <b>${_am} EQUAL</b><br>
@@ -367,9 +366,8 @@ async function initiate() {
 	_offer = vme.offer(_am);
 	//_current = veq.locked(_id);
 	_pqt = await Promise.all([_offer/*,_current*/]);
+	_q = [ _pqt[0] ]//, _pqt[1][0], Math.floor((Number(_pqt[1][1])*1e3-Date.Now()) /1e3/86400/7) ];
 	notice(`
-		_q = [ _pqt[0] ]//, _pqt[1][0], Math.floor((Number(_pqt[1][1])*1e3-Date.Now()) /1e3/86400/7) ];
-
 		<h3>Order Summary</h3>
 		<img style='height:20px;position:relative;top:4px' src="https://equalizer.exchange/assets/logo/EQUAL.png"> <b>Creating New Lock:</b><br>
 		Amount to add: <b>${_am} EQUAL</b><br>
