@@ -64,17 +64,17 @@ header label:after {
   float: left;
   font-weight: bold;
   font-size: 1.5em;
-  
+
 }
 .logo img{
   max-width:200px;
 }
-  
+
 nav {
   float: right;
   max-height: 0;
   width: 100%;
-  -webkit-transition: max-height 0.3s; 
+  -webkit-transition: max-height 0.3s;
      -moz-transition: max-height 0.3s;
        -o-transition: max-height 0.3s;
           transition: max-height 0.3s;
@@ -93,12 +93,12 @@ nav li:not(:last-of-type):hover {
   border-radius:15px;
 }
 
-  
+
 nav li {
   display: block;
   text-align: center;
 }
-  
+
 nav a {
   padding: 10px;
   width: 100%;
@@ -119,23 +119,23 @@ nav a {
 }
 
 @media only screen and (min-width: 700px) {
-  
+
   header label { display: none; }
-  
+
   nav {
     width: auto;
     max-height: none;
   }
-  
+
   nav ul {
     padding: 0;
   }
-  
+
   nav li {
     display: inline-block;
     text-align: left;
   }
-  
+
   header nav a {
     display: inline-block;
     padding: 10px 20px;
@@ -145,7 +145,7 @@ nav a {
     font-weight: bold;
     font-size:16px;
   }
-  
+
 }
 
 div{
@@ -223,6 +223,14 @@ button,select {
   font-family: sans-serif;
   font-weight: bold;
   color: white;
+  border:none;
+}
+
+button {
+  padding: 8px 16px !important;
+  cursor: pointer !important;
+  font-size: 16px !important;
+  border:none;
 }
 
 
