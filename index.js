@@ -284,7 +284,7 @@ async function extend() {
 			Please confirm the remaining transaction(s) at your wallet provider now.
 		`);
 	}
-	_offer = vme.offer(_am);
+	_offer = vme.offer(BigInt(_am*1e18));
 	_current = veq.locked(_id);
 	_pqt = await Promise.all([_offer,_current]);
 	_q = [ _pqt[0], _pqt[1][0], Math.floor((Number(_pqt[1][1])*1e3-Date.Now()) /1e3/86400/7) ];
@@ -363,7 +363,7 @@ async function initiate() {
 			Please confirm the remaining transaction(s) at your wallet provider now.
 		`);
 	}
-	_offer = vme.offer(_am);
+	_offer = vme.offer(BigInt(_am*1e18));
 	//_current = veq.locked(_id);
 	_pqt = await Promise.all([_offer/*,_current*/]);
 	_q = [ _pqt[0] ]//, _pqt[1][0], Math.floor((Number(_pqt[1][1])*1e3-Date.Now()) /1e3/86400/7) ];
@@ -411,5 +411,5 @@ async function dexstats() {
 		vme.FACTOR()//, eq.balanceOf(VME)
 	]);
 	console.log("rp",rp);
-	$("bonus-percentage").innerHTML = ((rp[0]-1e18)*100/1e18).toFixed()
+	$("bonus-percentage").innerHTML = ((rp[0]-1e18)*100/1e18).toFixed()+ " %"
 }
