@@ -232,7 +232,7 @@ async function extend() {
 	if(_id<1) { notice("<h3>Please Select a veNFT first!</h3>"); return;}
 	_am = $("lock-amt").value;
 	veq = new ethers.Contract(VENFT, VEABI, signer);
-	vme = new ethers.Contract(VME, VMEABI, provider);
+	vme = new ethers.Contract(VME, VMEABI, signer);
 	eq = new ethers.Contract(EQUAL, ["function approve(address,uint)", "function allowance(address,address) public view returns(uint)"], signer);
 	al = await Promise.all([
 		veq.isApprovedOrOwner(VME, _id),
@@ -333,7 +333,7 @@ async function initiate() {
 	///if(_id>1) { notice("<h3>Please De-Select a veNFT first!</h3>"); return;}
 	_am = $("lock-amt").value;
 	veq = new ethers.Contract(VENFT, VEABI, signer);
-	vme = new ethers.Contract(VME, VMEABI, provider);
+	vme = new ethers.Contract(VME, VMEABI, signer);
 	eq = new ethers.Contract(EQUAL, ["function approve(address,uint)", "function allowance(address,address) public view returns(uint)"], signer);
 	al = await Promise.all([
 		//veq.isApprovedOrOwner(VME, _id),
