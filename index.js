@@ -413,5 +413,5 @@ async function dexstats() {
 		vme.FACTOR()//, eq.balanceOf(VME)
 	]);
 	console.log("rp",rp);
-	$("bonus-percentage").innerHTML = (rp[0]-1e18)*100/1e18).toFixed()
+	$("bonus-percentage").innerHTML = ((rp[0]-1e18)*100/1e18).toFixed()
 }
