@@ -286,7 +286,7 @@ async function extend() {
 		`);
 	}
 	_offer = vme.offer(_id);
-	_current = vme.locked(_id);
+	_current = veq.locked(_id);
 	_pqt = await Promise.all([_offer,_current]);
 	notice(`
 		_q = [ _pqt[0], _pqt[1][0], Math.floor((Number(_pqt[1][1])*1e3-Date.Now()) /1e3/86400/7) ];
