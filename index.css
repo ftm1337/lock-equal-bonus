@@ -7,6 +7,12 @@
 @font-face{ font-family:light_italic;src: url(https://ftm.guru/font/light_italic.ttf);}
 @font-face{ font-family:regular;src: url(https://ftm.guru/font/regular.ttf);}
 @font-face{ font-family:regular_italic;src: url(https://ftm.guru/font/regular_italic.ttf);}
+
+@font-face {
+  font-family: Etna;
+  src: url("fonts/etna.otf");
+}
+
 *{
   font-family:regular;
   scroll-behavior: smooth !important;
@@ -16,8 +22,139 @@
   background: -webkit-linear-gradient(left, #035cd6, #2cfbee);
 }
 
+.connect-wallet{
+  font-family: Etna,sans-serif!important;
+  background: linear-gradient(266.44deg,#28edec,#0564d7);
+    border-radius: 32px 0;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 100;
+    position: relative;
+    font-size:12px;
+    padding: 20px;
+    margin: 0 10px;
+}
+
+header {
+  overflow: hidden;
+  padding: 0 20px;
+}
+
+header a, header label {
+  display: block;
+  padding-top:20px;
+  color: #fff;
+  text-decoration: none;
+  line-height: 20px;
+}
+
+header a:hover, header label:hover { color: #aaa; }
+
+header label {
+  float: right;
+  padding: 18px 20px;
+  cursor: pointer;
+}
+
+header label:after {
+}
+
+.logo {
+  float: left;
+  font-weight: bold;
+  font-size: 1.5em;
+  
+}
+.logo img{
+  max-width:200px;
+}
+  
+nav {
+  float: right;
+  max-height: 0;
+  width: 100%;
+  -webkit-transition: max-height 0.3s; 
+     -moz-transition: max-height 0.3s;
+       -o-transition: max-height 0.3s;
+          transition: max-height 0.3s;
+          margin-top:20px;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+   padding-bottom: 10px;
+}
+
+nav li:not(:last-of-type):hover {
+  text-decoration: none;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius:15px;
+}
+
+  
+nav li {
+  display: block;
+  text-align: center;
+}
+  
+nav a {
+  padding: 10px;
+  width: 100%;
+  font-size:16px;
+  font-weight: normal;
+    line-height: 1.5;
+}
+
+#burger-menu img{
+  width:40px;
+  margin-top:10px;
+}
+
+#nav { display: none; }
+
+#nav:checked ~ nav {
+  max-height: 400px;
+}
+
+@media only screen and (min-width: 700px) {
+  
+  header label { display: none; }
+  
+  nav {
+    width: auto;
+    max-height: none;
+  }
+  
+  nav ul {
+    padding: 0;
+  }
+  
+  nav li {
+    display: inline-block;
+    text-align: left;
+  }
+  
+  header nav a {
+    display: inline-block;
+    padding: 10px 20px;
+    width: auto;
+    color: white!important;
+    font-family: Inter,Arial,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-weight: bold;
+    font-size:16px;
+  }
+  
+}
+
+div{
+  font-family: Inter,Arial,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+}
+
+
 body {
-  background-color: #01011b;
+  background-color: #01011B;
 }
 
 small {
@@ -40,7 +177,7 @@ p {
 
 h1, h2 {
   color: white;
-  font-family: sans-serif;
+  font-family: "Etna";
   text-align: center;
 }
 
@@ -48,6 +185,7 @@ h1 span, h2 span {
   background: -webkit-linear-gradient(left, #035cd6, #2cfbee);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  font-family: "Etna";
 }
 
 h1 {
@@ -65,12 +203,10 @@ h2 {
 .mechanism {
   width: 75%;
   position: relative;
-  background: -webkit-linear-gradient(183.56deg, #01011b, #001337);
-  background: -moz-linear-gradient(183.56deg, #01011b 0, #001337 100%);
-  background: linear-gradient(266.44deg, #01011b, #001337);
+  background-color: rgb(1,1,27);
   border-radius: 25px;
   margin: 25px auto;
-  padding: 15px;
+  padding: 25px;
   position: relative;
   border-radius: 25px;
   margin-bottom: 0;
@@ -89,18 +225,19 @@ button,select {
   color: white;
 }
 
+
+
 button.submit {
   margin-top: 20px;
   padding: 10px;
   font-size: 0.8em;
   min-width:80%;
-  color:#000;
+  color:white;
 }
 
 .mechanism .input-amount input, .nft-amtl {
   display: inline;
   vertical-align: middle;
-  margin-left: 10px;
 }
 
 .mechanism .input-amount img {
@@ -164,8 +301,12 @@ textarea:focus, input:focus {
 #p_cw{font-size:1em;font-family:light}
 
 #nft-sel {
-  font-size: 0.8em;
-  padding: 5px
+  padding: 8px 12px;
+  border-radius: 10px;
+  margin: 2px;
+  cursor: pointer;
+  font-size: 16px;
+  border:0;
 }
 
 #cw_og {
@@ -223,8 +364,12 @@ textarea:focus, input:focus {
   button.submit {
     min-width: 150px;
     margin: 15px;
-    padding: 10px;
     font-size: 1em;
+    padding: 8px 12px;
+    border-radius: 10px;
+    margin: 2px;
+    cursor: pointer;
+    font-size: 16px;
   }
 
   h1 {
@@ -332,11 +477,25 @@ textarea:focus, input:focus {
   font-size: 1.25em;
   font-weight: bolder;
 }
-.lowerbar a{
-  font-size: 0.75em;
-  font-weight: lighter;
-  padding: 10px 10px 10px 0px;
-  color:#32fbe2;
-  text-decoration: none
+
+.socialIcon{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
 }
-.lowerbar img{width:24px}
+
+.socialIcon a{
+  width: 40px;
+    height: 40px;
+    background: -webkit-linear-gradient(left,#035cd6,#2cfbee);
+    background: -moz-linear-gradient(left,#035cd6 0,#2cfbee 100%);
+    background: linear-gradient(90deg,#035cd6,#2cfbee);
+    border-radius: 50%;
+    padding: 10px;
+    display:flex;
+    margin-left: 15px;
+    -moz-box-align: center;
+    align-items: center;
+    -moz-box-pack: center;
+    justify-content: center;
+}
