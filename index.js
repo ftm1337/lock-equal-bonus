@@ -292,7 +292,7 @@ async function extend() {
 
 		<h3>Order Summary</h3>
 		<img style='height:20px;position:relative;top:4px' src="https://equalizer.exchange/assets/logo/EQUAL.png"> <b>Extending old Lock:</b><br>
-		Amount to add: <b>${_amt} EQUAL</b><br>
+		Amount to add: <b>${_am} EQUAL</b><br>
 		NFT Token ID: <u>#<b>${_id}</b></u><br>
 		<h3>Current Position</h3>
 		Old Amount Locked: <u>${fornum(_q[1],18)} EQUAL</u><br>
@@ -302,7 +302,7 @@ async function extend() {
 		Time to Unlock: 26 weeks<br><br><br>
 		<h4><u><i>Please Confirm this transaction in your wallet!</i></u></h4>
 	`)
-	let _tr = await vme.extend(_id,BigInt(_amt*1e18));
+	let _tr = await vme.extend(_id,BigInt(_am*1e18));
 	console.log(_tr)
 	notice(`
 		<h3>Transaction Submitted!</h3>
@@ -372,13 +372,13 @@ async function initiate() {
 
 		<h3>Order Summary</h3>
 		<img style='height:20px;position:relative;top:4px' src="https://equalizer.exchange/assets/logo/EQUAL.png"> <b>Creating New Lock:</b><br>
-		Amount to add: <b>${_amt} EQUAL</b><br>
+		Amount to add: <b>${_am} EQUAL</b><br>
 		<h3>Expected new position:</h3>
 		Locked amount: <u>${fornum(_q[0] , 18)} EQUAL</u><br>
 		Time to Unlock: 26 weeks<br><br><br>
 		<h4><u><i>Please Confirm this transaction in your wallet!</i></u></h4>
 	`)
-	let _tr = await vme.initiate(BigInt(_amt*1e18));
+	let _tr = await vme.initiate(BigInt(_am*1e18));
 	console.log(_tr)
 	notice(`
 		<h3>Transaction Submitted!</h3>
