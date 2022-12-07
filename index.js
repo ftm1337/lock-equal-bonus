@@ -255,8 +255,9 @@ async function extend() {
 		console.log(_tw)
 		notice(`
 			<h3>Approval Completed!</h3>
+			<br><br>
 			<h4><a target="_blank" href="https://ftmscan.com/tx/${_tr.hash}">View on Explorer</a></h4>
-			<br>
+			<br><br>
 			Please confirm the remaining transaction(s) at your wallet provider now.
 		`);
 	}
@@ -284,15 +285,15 @@ async function extend() {
 			Please confirm the remaining transaction(s) at your wallet provider now.
 		`);
 	}
-	_offer = vme.offer(_am);
-	_current = veq.locked(_id);
+	_offer = vme.offer(_id);
+	_current = vme.locked(_id);
 	_pqt = await Promise.all([_offer,_current]);
 	notice(`
 		_q = [ _pqt[0], _pqt[1][0], Math.floor((Number(_pqt[1][1])*1e3-Date.Now()) /1e3/86400/7) ];
 
 		<h3>Order Summary</h3>
 		<img style='height:20px;position:relative;top:4px' src="https://equalizer.exchange/assets/logo/EQUAL.png"> <b>Extending old Lock:</b><br>
-		Amount to add: <b>${_am} EQUAL</b><br>
+		Amount to add: <b>${_amt} EQUAL</b><br>
 		NFT Token ID: <u>#<b>${_id}</b></u><br>
 		<h3>Current Position</h3>
 		Old Amount Locked: <u>${fornum(_q[1],18)} EQUAL</u><br>
@@ -302,7 +303,7 @@ async function extend() {
 		Time to Unlock: 26 weeks<br><br><br>
 		<h4><u><i>Please Confirm this transaction in your wallet!</i></u></h4>
 	`)
-	let _tr = await vme.extend(_id,BigInt(_am*1e18));
+	let _tr = await vme.extend(_id,BigInt(_amt*1e18));
 	console.log(_tr)
 	notice(`
 		<h3>Transaction Submitted!</h3>
@@ -329,78 +330,6 @@ async function extend() {
 	gubs()
 }
 
-async function initiate() {
-	_id = $("nft-sel").value;
-	///if(_id>1) { notice("<h3>Please De-Select a veNFT first!</h3>"); return;}
-	_am = $("lock-amt").value;
-	veq = new ethers.Contract(VENFT, VEABI, signer);
-	vme = new ethers.Contract(VME, VMEABI, provider);
-	eq = new ethers.Contract(EQUAL, ["function approve(address,uint)", "function allowance(address,address) public view returns(uint)"], signer);
-	al = await Promise.all([
-		//veq.isApprovedOrOwner(VME, _id),
-		eq.allowance(window.ethereum.selectedAddress, VME)
-	]);
-	if(Number(al[0])<=_am*1e18) {
-		notice(`
-			<h3>Approval required for EQUAL</h3>
-			Approval is required to add EQUAL tokens to a new veNFT.
-			<li>Approve EQUAL token</li>
-			<br><br>
-			<h4><u><i>Please Confirm this transaction in your wallet!</i></u></h4>
-		`);
-		let _tr = await eq.approve(VME,ethers.constants.MaxUint256);
-		console.log(_tr)
-		notice(`
-			<h3>Submitting EQUAL Approval Transaction!</h3>
-			<h4><a target="_blank" href="https://ftmscan.com/tx/${_tr.hash}">View on Explorer</a></h4>
-		`);
-		_tw = await _tr.wait()
-		console.log(_tw)
-		notice(`
-			<h3>Approval Completed!</h3>
-			<br><br>
-			<h4><a target="_blank" href="https://ftmscan.com/tx/${_tr.hash}">View on Explorer</a></h4>
-			<br><br>
-			Please confirm the remaining transaction(s) at your wallet provider now.
-		`);
-	}
-	_offer = vme.offer(_am);
-	//_current = veq.locked(_id);
-	_pqt = await Promise.all([_offer/*,_current*/]);
-	notice(`
-		_q = [ _pqt[0] ]//, _pqt[1][0], Math.floor((Number(_pqt[1][1])*1e3-Date.Now()) /1e3/86400/7) ];
-
-		<h3>Order Summary</h3>
-		<img style='height:20px;position:relative;top:4px' src="https://equalizer.exchange/assets/logo/EQUAL.png"> <b>Creating New Lock:</b><br>
-		Amount to add: <b>${_am} EQUAL</b><br>
-		<h3>Expected new position:</h3>
-		Locked amount: <u>${fornum(_q[0] , 18)} EQUAL</u><br>
-		Time to Unlock: 26 weeks<br><br><br>
-		<h4><u><i>Please Confirm this transaction in your wallet!</i></u></h4>
-	`)
-	let _tr = await vme.initiate(BigInt(_am*1e18));
-	console.log(_tr)
-	notice(`
-		<h3>Transaction Submitted!</h3>
-		<br><h4>Locking more EQUAL</h4>
-		<h3>Expected new position:</h3>
-		Locked amount: <u>${fornum(_q[0] , 18)} EQUAL</u><br>
-		Time to Unlock: 26 weeks<br><br><br>
-		<h4><a target="_blank" href="https://ftmscan.com/tx/${_tr.hash}">View on Explorer</a></h4>
-	`)
-	_tw = await _tr.wait()
-	console.log("tw",_tw)
-	notice(`
-		<h3>Order Completed!</h3>
-		<!--NFT Token ID: <u>#<b>${_id}</b></u><br>-->
-		<h3>Current Position</h3>
-		Locked amount: <u>${fornum(_q[0] , 18)} EQUAL</u><br>
-		Time to Unlock: 26 weeks<br><br><br>
-		<h4><a target="_blank" href="https://ftmscan.com/tx/${_tr.hash}">View on Explorer</a></h4>
-	`)
-	gubs()
-}
-
 function notice(c) {
 	window.location = "#note"
 	$("content1").innerHTML = c
@@ -414,9 +343,13 @@ async function dexstats() {
 		eq.balanceOf(VME)
 	]);
 	console.log("rp",rp);
-	$("stats").innerHTML = `
-		<br>
-		<br>Current Bonus: ${(fornum((rp[0]-1e18)*100,18))} %
-    	<br>Available Incentives: ${(fornum(rp[1],18))} EQUAL
-	`
+	// $("stats").innerHTML = `
+	// 	<br>
+	// 	<br>Current Bonus: ${(fornum((rp[0]-1e18)*100,18)) * 1}%
+    // 	<br>Available Incentives: ${(fornum(rp[1],18))} EQUAL
+	// `;
+	$("bonus-percentage").innerHTML = `
+	<span> ${(fornum((rp[0]-1e18)*100,18)) * 1}% </span>
+	
+	`;
 }
