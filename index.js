@@ -287,7 +287,7 @@ async function extend() {
 	_offer = vme.offer(BigInt(_am*1e18));
 	_current = veq.locked(_id);
 	_pqt = await Promise.all([_offer,_current]);
-	_q = [ _pqt[0], _pqt[1][0], Math.floor((Number(_pqt[1][1])*1e3-Date.Now()) /1e3/86400/7) ];
+	_q = [ _pqt[0], _pqt[1][0], Math.floor((Number(_pqt[1][1])*1e3-Date.now()) /1e3/86400/7) ];
 	notice(`
 		<h3>Order Summary</h3>
 		<img style='height:20px;position:relative;top:4px' src="https://equalizer.exchange/assets/logo/EQUAL.png"> <b>Extending old Lock:</b><br>
