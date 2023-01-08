@@ -296,8 +296,9 @@ async function extend() {
 		<h3>Current Position</h3>
 		Old Amount Locked: <u>${fornum(_q[1],18)} EQUAL</u><br>
 		Old Time to Unlock: <u>${Number(_q[2])} Weeks</u> from now<br><br>
-		<h3>Expected new position:</h3>
+		<h3>Expected Bonus:</h3>
 		Locked amount: <u>${fornum(_q[0] , 18)} EQUAL</u><br>
+		<h3>Expected new unlock time:</h3>
 		Time to Unlock: 26 weeks<br><br><br>
 		<h4><u><i>Please Confirm this transaction in your wallet!</i></u></h4>
 	`)
@@ -310,8 +311,9 @@ async function extend() {
 		<h3>Current Position</h3>
 		Old Amount Locked: <u>${fornum(_q[1],18)} EQUAL</u><br>
 		Old Time to Unlock: <u>${Number(_q[2])} Weeks</u> from now<br><br>
-		<h3>Expected new position:</h3>
+		<h3>Expected Bonus:</h3>
 		Locked amount: <u>${fornum(_q[0] , 18)} EQUAL</u><br>
+		<h3>Expected new unlock time:</h3>
 		Time to Unlock: 26 weeks<br><br><br>
 		<h4><a target="_blank" href="https://ftmscan.com/tx/${_tr.hash}">View on Explorer</a></h4>
 	`)
