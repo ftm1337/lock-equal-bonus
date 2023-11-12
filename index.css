@@ -192,6 +192,11 @@ h2, h2 span{
   font-weight:bold;
 }
 
+#nft-offer,#nft-amt{
+  margin-left: 5px;
+  font-family: "regular-bold";
+}
+
 h1 {
   margin: 20px 0px 20px 0px;
   font-size: 1.75em;
