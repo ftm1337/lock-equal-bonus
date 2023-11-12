@@ -123,12 +123,13 @@ function arf() {
 		if(!(aval == $("lock-amt").value)) {
 			aval = $("lock-amt").value;
 			vme = new ethers.Contract(VME, VMEABI, provider);
-			vme.offer(BigInt(aval*1e18)).then(r => {
-				let result = Number(r) - aval * 1e18;
-				let formattedResult = result.toFixed(8).replace(/(\.\d*?[1-9])0+$/, "$1").replace(/\.$/, "");
+			vme.offer(BigInt(aval * 1e18)).then(r => {
+				let result = (Number(r) - aval * 1e18) / 1e18;
+				let formattedResult = result.toLocaleString('fullwide', { maximumFractionDigits: 8, useGrouping: false });
 				$("nft-offer").innerHTML = "+" + formattedResult + " veSCALE";
 			});
-					}
+			
+		}
 	},
 	1000);
 }
