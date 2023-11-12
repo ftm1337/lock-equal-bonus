@@ -22,17 +22,11 @@
 }
 
 .connect-wallet{
-  font-family: Etna,sans-serif!important;
-  background: linear-gradient(266.44deg,#28edec,#0564d7);
-    border-radius: 32px 0;
-    color: #fff;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 100;
-    position: relative;
-    font-size:12px;
-    padding: 20px;
-    margin: 0 10px;
+  border: 1px solid rgb(39, 44, 78);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 16px 8px!important;
+  font-weight: 100;
 }
 
 header {
@@ -153,7 +147,8 @@ div{
 
 
 body {
-  background-color: #01011B;
+  background-color: #01011d;
+  background-image: radial-gradient(at 70% 5%,rgba(6,101,216,.16) 0,transparent 50%);
 }
 
 small {
@@ -181,9 +176,10 @@ h1, h2 {
 }
 
 h1 span, h2 span {
-  background: -webkit-linear-gradient(left, #035cd6, #2cfbee);
+  background: linear-gradient(1deg,#035cd6,#2cfbee);
+  background-clip: text;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: transparent;
   font-family: "Etna";
 }
 
