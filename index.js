@@ -243,8 +243,8 @@ async function extend() {
 	_pqt = await Promise.all([_offer,_current]);
 	_q = [ _pqt[0], _pqt[1][0], Math.floor((Number(_pqt[1][1])*1e3-Date.now()) /1e3/86400/7) ];
 	notice(`
-		<h3>Order Summary</h3>
-		<img style='height:20px;position:relative;top:4px' src="https://equalizer.exchange/assets/logo/SCALE.png"> <b>Extending old Lock:</b><br>
+		<h3>Order Summary</h3>SCALE.png
+		<img style='height:20px;position:relative;top:4px' src="https://base.equalizer.exchange/assets/base/token/0x54016a4848a38f257b6e96331f7404073fd9c32c.png"> <b>Extending old Lock:</b><br>
 		Amount to add: <b>${_am} SCALE</b><br>
 		NFT Token ID: <u>#<b>${_id}</b></u><br>
 		<h3>Current Position</h3>
@@ -325,7 +325,7 @@ async function initiate() {
 	_q = [ _pqt[0] ]//, _pqt[1][0], Math.floor((Number(_pqt[1][1])*1e3-Date.Now()) /1e3/86400/7) ];
 	notice(`
 		<h3>Order Summary</h3>
-		<img style='height:20px;position:relative;top:4px' src="https://equalizer.exchange/assets/logo/SCALE.png"> <b>Creating New Lock:</b><br>
+		<img style='height:20px;position:relative;top:4px' src="https://base.equalizer.exchange/assets/base/token/0x54016a4848a38f257b6e96331f7404073fd9c32c.png"> <b>Creating New Lock:</b><br>
 		Amount to add: <b>${_am} SCALE</b><br>
 		<h3>Expected new position:</h3>
 		Locked amount: <u>${fornum(_q[0] , 18)} SCALE</u><br>
