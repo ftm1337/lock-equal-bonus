@@ -306,10 +306,8 @@ textarea:focus, input:focus {
 
 .hr-nft {
   border:none;
-  background: -webkit-linear-gradient(183.56deg, #0564d7, #28edec);
-  background: -moz-linear-gradient(183.56deg, #0564d7 0, #28edec 100%);
-  background: linear-gradient(266.44deg, #0564d7, #28edec);
-  height: 2px;
+  background: rgb(39, 44, 78);
+  height: 3px;
 }
 
 #p_cw{font-size:1em;font-family:light}
