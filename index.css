@@ -3,6 +3,8 @@
 @font-face { font-family:light;src: url("https://ftm.guru/font/light.ttf");}
 @font-face { font-family:light_italic;src: url("https://ftm.guru/font/light_italic.ttf");}
 @font-face { font-family:regular;src: url("fonts/Inter-Regular.ttf");}
+@font-face { font-family:regular-bold;src: url("fonts/Inter-Bold.ttf");}
+
 @font-face { font-family:regular_italic;src: url("fonts/Inter-Regular.ttf");}
 @font-face {
   font-family: Etna;
@@ -183,6 +185,11 @@ h1 span, h2 span {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-family: "Etna";
+}
+
+h2, h2 span{
+  font-family: "regular-bold";
+  font-weight:bold;
 }
 
 h1 {
