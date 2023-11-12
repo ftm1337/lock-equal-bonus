@@ -92,7 +92,7 @@ async function cw2()
 	if(Number(accounts[0])>0){console.log("005: Success - ", accounts)}
 	else{console.log("005: Failure", accounts)}
 
-	$("cw").innerHTML= (window.ethereum.selectedAddress).substr(0,5)
+	$("cw").innerHTML= (window.ethereum.selectedAddress).substr(0,6)
 	if(window.ethereum.chainId==250) (new ethers.Contract("0x14ffd1fa75491595c6fd22de8218738525892101",["function getNames(address) public view returns(string[] memory)"],provider)).getNames(window.ethereum.selectedAddress).then(rn=>{if(rn.length>0){$("cw").innerHTML="<span style='/*font-family:bold;font-size:1.337em*/'>"+rn[0]+"</span>"}else{$("cw").innerHTML= (window.ethereum.selectedAddress).substr(0,10) +"..."+(window.ethereum.selectedAddress).substr(34);}})
 	$("cw_m").innerHTML=""
 	$("connect").style.display="none";
