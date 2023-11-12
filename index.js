@@ -123,8 +123,12 @@ function arf() {
 		if(!(aval == $("lock-amt").value)) {
 			aval = $("lock-amt").value;
 			vme = new ethers.Contract(VME, VMEABI, provider);
-			vme.offer(BigInt(aval*1e18)).then(r=>{$("nft-offer").innerHTML = "+" + fornum(Number(r)-aval*1e18,18) + " veSCALE"})
-		}
+			vme.offer(BigInt(aval*1e18)).then(r => {
+				let result = Number(r) - aval * 1e18;
+				let formattedResult = result.toFixed(8).replace(/(\.\d*?[1-9])0+$/, "$1").replace(/\.$/, "");
+				$("nft-offer").innerHTML = "+" + formattedResult + " veSCALE";
+			});
+					}
 	},
 	1000);
 }
@@ -172,8 +176,8 @@ async function quote() {
 	_q = _pqt[0];
 	$("nft-amt").innerHTML = fornum(_q[1],18) + " SCALE";
 	$("nft-tl").innerHTML = Number(_q[2]) + " Weeks";
-	$("nft-offer").innerHTML = fornum(_q[0]/1e18 * _pqt[1]/1e18 , 0) + " FTM";
-	$("claim-offer").innerHTML = "Claim "+fornum(_q[0]/1e18 * _pqt[1]/1e18 , 0) + " FTM";
+	$("nft-offer").innerHTML = fornum(_q[0]/1e18 * _pqt[1]/1e18 , 0) + " ETH";
+	$("claim-offer").innerHTML = "Claim "+fornum(_q[0]/1e18 * _pqt[1]/1e18 , 0) + " ETH";
 }
 
 async function extend() {
