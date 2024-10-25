@@ -162,40 +162,46 @@ async function confirmbuylock() {
 	min = await rtr.getAmountOut(amt, WNATIVE, TOKEN, false);
 	notice(`
 		<h2>Final Check</h2>
-		You are spending
-		<br> ${(Number(amt)/1e18).toFixed(6)} ${NATIVE_NAME}.
+		<h3>
+			You are spending
+			<u> ${(Number(amt)/1e18).toFixed(6)} ${NATIVE_NAME} </u>
+		</h3>
+		<h3>
+			You will get a veNFT with
+			<u> ${(Number(min)/1e18).toFixed(6)} ${TOKEN_NAME} </u>
+		</h3>
+		<h3>
+			<i> And a nice YeVe Airdrop! </i>
+		</h3>
 		<br>
-		You will get a veNFT with
-		<br> ${(Number(min)/1e18).toFixed(6)} ${TOKEN_NAME}
-		<br> and a nice YeVe Airdrop!
-		<br>
-		<br>
-		<div align="center" class="equal-gradient" onclick="buylock(${amt},${min})">Confirm Order</div>
+		<div align="center">
+			<button class="equal-gradient submit" onclick="buylock(${amt},${min})">Confirm Order</button>
+		</div>
 	`);
 }
 
-async function buylock(amtin, minout) {
+async function buylock(amt, min) {
 	notice(`
 		<h3>Order Summary</h3>
-		<img style='height:20px;position:relative;top:4px' src="${NATIVE_LOGO}"> Buying ${(Number(minout)/1e18).toFixed(6)} ${TOKEN_NAME}
+		<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}"> Buying ${(Number(min)/1e18).toFixed(6)} ${TOKEN_NAME}
 		<br>
-		<img style='height:20px;position:relative;top:4px' src="${NATIVE_LOGO}"> Using ${(Number(amtin)/1e18).toFixed(6)} ${NATIVE_NAME}
+		<img style='height:20px;position:relative;top:4px' src="${NATIVE_LOGO}"> Using ${(Number(amt)/1e18).toFixed(6)} ${NATIVE_NAME}
 		<br>
-		<img style='height:20px;position:relative;top:4px' src="${NATIVE_LOGO}"> A minimum of ${(Number(minout)*99/100/1e18).toFixed(6)} ${TOKEN_NAME}
+		<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}"> for a minimum of ${(Number(min)*99/100/1e18).toFixed(6)} ${TOKEN_NAME}
 		<br> as well as a nice YeVe Airdrop on Solana!
 		<br>
 		<h4><u><i>Please Confirm this transaction in your wallet!</i></u></h4>
 	`)
 	elb = new ethers.Contract(ELB, ["function buyAndLock(uint)"],signer);
-	let _tr = await elb.buyAndLock( BigInt( Math.floor( Number(minout)*99/100 ) ) );
+	let _tr = await elb.buyAndLock( BigInt( Math.floor( Number(min)*99/100 ) ) , {value: BigInt(Math.floor(amt - (amt%1_000_000_000))) } );
 	console.log(_tr)
 	notice(`
 		<h3>Transaction Submitted!</h3>
-		<img style='height:20px;position:relative;top:4px' src="${NATIVE_LOGO}"> Buying ${(Number(minout)/1e18).toFixed(6)} ${TOKEN_NAME}
+		<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}"> Buying ${(Number(min)/1e18).toFixed(6)} ${TOKEN_NAME}
 		<br>
-		<img style='height:20px;position:relative;top:4px' src="${NATIVE_LOGO}"> Using ${(Number(amtin)/1e18).toFixed(6)} ${NATIVE_NAME}
+		<img style='height:20px;position:relative;top:4px' src="${NATIVE_LOGO}"> Using ${(Number(amt)/1e18).toFixed(6)} ${NATIVE_NAME}
 		<br>
-		<img style='height:20px;position:relative;top:4px' src="${NATIVE_LOGO}"> A minimum of ${(Number(minout)*99/100/1e18).toFixed(6)} ${TOKEN_NAME}
+		<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}"> for a minimum of ${(Number(min)*99/100/1e18).toFixed(6)} ${TOKEN_NAME}
 		<br> as well as a nice YeVe Airdrop on Solana!
 		<br>
 		<h4><a target="_blank" href="${EXPLORT + _tr.hash}">View on Explorer</a></h4>
@@ -204,11 +210,11 @@ async function buylock(amtin, minout) {
 	console.log(_tw)
 	notice(`
 		<h3>Order Completed!</h3>
-		<img style='height:20px;position:relative;top:4px' src="${NATIVE_LOGO}"> Buying ${(Number(minout)/1e18).toFixed(6)} ${TOKEN_NAME}
+		<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}"> Buying ${(Number(min)/1e18).toFixed(6)} ${TOKEN_NAME}
 		<br>
-		<img style='height:20px;position:relative;top:4px' src="${NATIVE_LOGO}"> Using ${(Number(amtin)/1e18).toFixed(6)} ${NATIVE_NAME}
+		<img style='height:20px;position:relative;top:4px' src="${NATIVE_LOGO}"> Using ${(Number(amt)/1e18).toFixed(6)} ${NATIVE_NAME}
 		<br>
-		<img style='height:20px;position:relative;top:4px' src="${NATIVE_LOGO}"> A minimum of ${(Number(minout)*99/100/1e18).toFixed(6)} ${TOKEN_NAME}
+		<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}"> for a minimum of ${(Number(min)*99/100/1e18).toFixed(6)} ${TOKEN_NAME}
 		<br> as well as a nice YeVe Airdrop on Solana!
 		<br>
 		<h4><a target="_blank" href="${EXPLORT + _tr.hash}">View on Explorer</a></h4>
