@@ -169,17 +169,20 @@ async function drefresh() {
 
 	if(window.ethereum && window.ethereum.selectedAddress) {
 		$("portfolio").innerHTML =`
-			<h2>Your expected Airdrop:
+			<h2>Your expected Airdrop:</h2>
+			<h1>
 				<span>
 					${((STATE.ulk/STATE.tlk)*STATE.ad).toLocaleString('fullwide', { maximumFractionDigits: 2, useGrouping: false })}
 
 				</span>
-				YeVe, worth
+				YeVe,
+				<br>
+				worth
 				<span>
 					$${((STATE.ulk/STATE.tlk)*STATE.adu).toLocaleString('fullwide', { maximumFractionDigits: 2, useGrouping: false })}
 				</span>
 				!
-			</h2>
+			</h1
 		`;
 	}
 
@@ -191,20 +194,19 @@ async function dexstats() {
 		aval = $("lock-amt").value;
 		let tin = BigInt( Math.floor( aval * 1e18 ));
 		tin = tin - (tin%1_000_000_000n);
-		tr.getAmountOut(tin, WNATIVE, TOKEN, false)
-			.then(r => {
-				let ve = (Number(r) / 1e18);
-				$("nft-offer").innerHTML = "+" + ve.toLocaleString('fullwide', { maximumFractionDigits: 2, useGrouping: false }) + " veSCALE";
-				$("nft-offer-usd").innerHTML = "worth $" + (ve*tpu).toLocaleString('fullwide', { maximumFractionDigits: 2, useGrouping: false });
-				$("airdrop-offer").innerHTML = "+" + (ve/tl*STATE.ad).toLocaleString('fullwide', { maximumFractionDigits: 2, useGrouping: false }) + " YeVe";
-				$("airdrop-offer-usd").innerHTML = "worth $" + (ve/tl*STATE.adu).toLocaleString('fullwide', { maximumFractionDigits: 2, useGrouping: false });
-			})
+		drefresh()
 			.then( () => {
-				//
-				drefresh()
-			} )
+				tr.getAmountOut(tin, WNATIVE, TOKEN, false)
+					.then(r => {
+						let ve = (Number(r) / 1e18);
+						$("nft-offer").innerHTML = "+" + ve.toLocaleString('fullwide', { maximumFractionDigits: 2, useGrouping: false }) + " veSCALE";
+						$("nft-offer-usd").innerHTML = "worth $" + (ve*STATE.tpu).toLocaleString('fullwide', { maximumFractionDigits: 2, useGrouping: false });
+						$("airdrop-offer").innerHTML = "+" + (ve/STATE.tlk*STATE.ad).toLocaleString('fullwide', { maximumFractionDigits: 2, useGrouping: false }) + " YeVe";
+						$("airdrop-offer-usd").innerHTML = "worth $" + (ve/STATE.tl*STATE.adu).toLocaleString('fullwide', { maximumFractionDigits: 2, useGrouping: false });
+					})
+				;
+			})
 		;
-
 	}
 }
 
