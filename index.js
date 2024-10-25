@@ -92,8 +92,8 @@ async function cw2()
 	if(Number(accounts[0])>0){console.log("005: Success - ", accounts)}
 	else{console.log("005: Failure", accounts)}
 
-	$("cw").innerHTML= (window.ethereum.selectedAddress).substr(0,6) + "...";
-	if(window.ethereum.chainId==250) (new ethers.Contract("0x14ffd1fa75491595c6fd22de8218738525892101",["function getNames(address) public view returns(string[] memory)"],provider)).getNames(window.ethereum.selectedAddress).then(rn=>{if(rn.length>0){$("cw").innerHTML="<span style='/*font-family:bold;font-size:1.337em*/'>"+rn[0]+"</span>"}else{$("cw").innerHTML= (window.ethereum.selectedAddress).substr(0,10) +"..."+(window.ethereum.selectedAddress).substr(34);}})
+	$("cw").innerHTML= (window.ethereum.selectedAddress).substr(0,6) + "|"+(window.ethereum.selectedAddress).substr(38);
+	if(window.ethereum.chainId==250) (new ethers.Contract("0x14ffd1fa75491595c6fd22de8218738525892101",["function getNames(address) public view returns(string[] memory)"],provider)).getNames(window.ethereum.selectedAddress).then(rn=>{if(rn.length>0){$("cw").innerHTML="<span style='/*font-family:bold;font-size:1.337em*/'>"+rn[0]+"</span>"}else{$("cw").innerHTML= (window.ethereum.selectedAddress).substr(0,10) +"|"+(window.ethereum.selectedAddress).substr(38);}})
 	$("cw_m").innerHTML=""
 	$("connect").style.display="none";
 	$("switch").style.display="block";
@@ -118,16 +118,19 @@ function fornum2(n,d)
 aval = $("lock-amt").value;
 
 function arf() {
+	let tr = new ethers.Contract(ROUTER, ["function getAmountOut(uint amountIn, address tokenIn, address tokenOut, bool stable) public view returns (uint amount)"], provider);
 	var xfr = setInterval(function() {
 
 		if(!(aval == $("lock-amt").value)) {
 			aval = $("lock-amt").value;
-			vme = new ethers.Contract(VME, VMEABI, provider);
-			vme.offer(BigInt(aval * 1e18)).then(r => {
-				let result = (Number(r) - aval * 1e18) / 1e18;
-				let formattedResult = result.toLocaleString('fullwide', { maximumFractionDigits: 8, useGrouping: false });
-				$("nft-offer").innerHTML = "+" + formattedResult + " veSCALE";
-				$("airdrop-offer").innerHTML = "+" + formattedResult + " YeVe";
+			let tin = BigInt( Math.floor( aval * 1e18 ));
+			tin = tin - (tin%1_000_000_000n);
+			tr.getAmountOut(tin, WNATIVE, TOKEN, false).then(r => {
+				let ve = (Number(r) / 1e18).toLocaleString('fullwide', { maximumFractionDigits: 8, useGrouping: false });
+				$("nft-offer").innerHTML = "+" + ve + " veSCALE";
+				$("nft-offer-usd").innerHTML = "worth $" + ve + " veSCALE";
+				$("airdrop-offer").innerHTML = "+" + ve + " YeVe";
+				$("airdrop-offer-usd").innerHTML = "worth $" + ve + " YeVe";
 			});
 
 		}
@@ -135,158 +138,80 @@ function arf() {
 	1000);
 }
 
-VEABI = [{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"approved","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"operator","type":"address"},{"indexed":false,"internalType":"bool","name":"approved","type":"bool"}],"name":"ApprovalForAll","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"delegator","type":"address"},{"indexed":true,"internalType":"address","name":"fromDelegate","type":"address"},{"indexed":true,"internalType":"address","name":"toDelegate","type":"address"}],"name":"DelegateChanged","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"delegate","type":"address"},{"indexed":false,"internalType":"uint256","name":"previousBalance","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"newBalance","type":"uint256"}],"name":"DelegateVotesChanged","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"provider","type":"address"},{"indexed":false,"internalType":"uint256","name":"tokenId","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"},{"indexed":true,"internalType":"uint256","name":"locktime","type":"uint256"},{"indexed":false,"internalType":"enum VotingEscrow.DepositType","name":"deposit_type","type":"uint8"},{"indexed":false,"internalType":"uint256","name":"ts","type":"uint256"}],"name":"Deposit","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint8","name":"version","type":"uint8"}],"name":"Initialized","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"prevSupply","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"supply","type":"uint256"}],"name":"Supply","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"provider","type":"address"},{"indexed":false,"internalType":"uint256","name":"tokenId","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"ts","type":"uint256"}],"name":"Withdraw","type":"event"},{"inputs":[],"name":"DELEGATION_TYPEHASH","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"DOMAIN_TYPEHASH","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"MAX_DELEGATES","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_tokenId","type":"uint256"}],"name":"abstain","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_approved","type":"address"},{"internalType":"uint256","name":"_tokenId","type":"uint256"}],"name":"approve","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"artProxy","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_tokenId","type":"uint256"}],"name":"attach","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"attachments","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_owner","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_tokenId","type":"uint256"},{"internalType":"uint256","name":"_block","type":"uint256"}],"name":"balanceOfAtNFT","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_tokenId","type":"uint256"}],"name":"balanceOfNFT","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_tokenId","type":"uint256"},{"internalType":"uint256","name":"_t","type":"uint256"}],"name":"balanceOfNFTAt","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"block_number","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"checkpoint","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"},{"internalType":"uint32","name":"","type":"uint32"}],"name":"checkpoints","outputs":[{"internalType":"uint256","name":"timestamp","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_value","type":"uint256"},{"internalType":"uint256","name":"_lock_duration","type":"uint256"}],"name":"create_lock","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_value","type":"uint256"},{"internalType":"uint256","name":"_lock_duration","type":"uint256"},{"internalType":"address","name":"_to","type":"address"}],"name":"create_lock_for","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"decimals","outputs":[{"internalType":"uint8","name":"","type":"uint8"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"delegatee","type":"address"}],"name":"delegate","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"delegatee","type":"address"},{"internalType":"uint256","name":"nonce","type":"uint256"},{"internalType":"uint256","name":"expiry","type":"uint256"},{"internalType":"uint8","name":"v","type":"uint8"},{"internalType":"bytes32","name":"r","type":"bytes32"},{"internalType":"bytes32","name":"s","type":"bytes32"}],"name":"delegateBySig","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"delegator","type":"address"}],"name":"delegates","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_tokenId","type":"uint256"},{"internalType":"uint256","name":"_value","type":"uint256"}],"name":"deposit_for","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_tokenId","type":"uint256"}],"name":"detach","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"epoch","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_tokenId","type":"uint256"}],"name":"getApproved","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"timestamp","type":"uint256"}],"name":"getPastTotalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"},{"internalType":"uint256","name":"timestamp","type":"uint256"}],"name":"getPastVotes","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"},{"internalType":"uint256","name":"timestamp","type":"uint256"}],"name":"getPastVotesIndex","outputs":[{"internalType":"uint32","name":"","type":"uint32"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"getVotes","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_tokenId","type":"uint256"}],"name":"get_last_user_slope","outputs":[{"internalType":"int128","name":"","type":"int128"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_tokenId","type":"uint256"},{"internalType":"uint256","name":"_value","type":"uint256"}],"name":"increase_amount","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_tokenId","type":"uint256"},{"internalType":"uint256","name":"_value","type":"uint256"}],"name":"increase_amount_for","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_tokenId","type":"uint256"},{"internalType":"uint256","name":"_lock_duration","type":"uint256"}],"name":"increase_unlock_time","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"token_addr","type":"address"},{"internalType":"address","name":"art_proxy","type":"address"}],"name":"initialize","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_owner","type":"address"},{"internalType":"address","name":"_operator","type":"address"}],"name":"isApprovedForAll","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_spender","type":"address"},{"internalType":"uint256","name":"_tokenId","type":"uint256"}],"name":"isApprovedOrOwner","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"locked","outputs":[{"internalType":"int128","name":"amount","type":"int128"},{"internalType":"uint256","name":"end","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_tokenId","type":"uint256"}],"name":"locked__end","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_from","type":"uint256"},{"internalType":"uint256","name":"_to","type":"uint256"}],"name":"merge","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"nonces","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"numCheckpoints","outputs":[{"internalType":"uint32","name":"","type":"uint32"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_tokenId","type":"uint256"}],"name":"ownerOf","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"ownership_change","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"point_history","outputs":[{"internalType":"int128","name":"bias","type":"int128"},{"internalType":"int128","name":"slope","type":"int128"},{"internalType":"uint256","name":"ts","type":"uint256"},{"internalType":"uint256","name":"blk","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_from","type":"address"},{"internalType":"address","name":"_to","type":"address"},{"internalType":"uint256","name":"_tokenId","type":"uint256"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_from","type":"address"},{"internalType":"address","name":"_to","type":"address"},{"internalType":"uint256","name":"_tokenId","type":"uint256"},{"internalType":"bytes","name":"_data","type":"bytes"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_operator","type":"address"},{"internalType":"bool","name":"_approved","type":"bool"}],"name":"setApprovalForAll","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_proxy","type":"address"}],"name":"setArtProxy","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_team","type":"address"}],"name":"setTeam","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_voter","type":"address"}],"name":"setVoter","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"slope_changes","outputs":[{"internalType":"int128","name":"","type":"int128"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"supply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes4","name":"_interfaceID","type":"bytes4"}],"name":"supportsInterface","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"team","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"token","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_owner","type":"address"},{"internalType":"uint256","name":"_tokenIndex","type":"uint256"}],"name":"tokenOfOwnerByIndex","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_tokenId","type":"uint256"}],"name":"tokenURI","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_block","type":"uint256"}],"name":"totalSupplyAt","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"t","type":"uint256"}],"name":"totalSupplyAtT","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_from","type":"address"},{"internalType":"address","name":"_to","type":"address"},{"internalType":"uint256","name":"_tokenId","type":"uint256"}],"name":"transferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"user_point_epoch","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"},{"internalType":"uint256","name":"","type":"uint256"}],"name":"user_point_history","outputs":[{"internalType":"int128","name":"bias","type":"int128"},{"internalType":"int128","name":"slope","type":"int128"},{"internalType":"uint256","name":"ts","type":"uint256"},{"internalType":"uint256","name":"blk","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_tokenId","type":"uint256"},{"internalType":"uint256","name":"_idx","type":"uint256"}],"name":"user_point_history__ts","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"version","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"voted","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"voter","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_tokenId","type":"uint256"}],"name":"voting","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_tokenId","type":"uint256"}],"name":"withdraw","outputs":[],"stateMutability":"nonpayable","type":"function"}]
-
-VMABI = [{"anonymous": false,"inputs": [{"indexed": true,"internalType": "address","name": "seller","type": "address"},{"indexed": false,"internalType": "uint256","name": "id","type": "uint256"},{"indexed": false,"internalType": "uint256","name": "paid","type": "uint256"},{"indexed": false,"internalType": "uint256","name": "locked","type": "uint256"},{"indexed": false,"internalType": "uint256","name": "wks","type": "uint256"},{"indexed": false,"internalType": "uint256","name": "wen","type": "uint256"}],"name": "Sale","type": "event"},{"inputs": [{"internalType": "address","name": "_to","type": "address"},{"internalType": "bytes","name": "_data","type": "bytes"}],"name": "customCall","outputs": [{"internalType": "bytes","name": "","type": "bytes"}],"stateMutability": "payable","type": "function"},{"inputs": [{"internalType": "address","name": "to","type": "address"},{"internalType": "uint256","name": "amount","type": "uint256"},{"internalType": "bytes","name": "_data","type": "bytes"}],"name": "customCall","outputs": [{"internalType": "bytes","name": "","type": "bytes"}],"stateMutability": "payable","type": "function"},{"inputs": [{"internalType": "address[]","name": "_tos","type": "address[]"},{"internalType": "uint256[]","name": "_amounts","type": "uint256[]"},{"internalType": "bytes[]","name": "_datas","type": "bytes[]"}],"name": "customCall","outputs": [{"internalType": "bytes[]","name": "retdata","type": "bytes[]"}],"stateMutability": "payable","type": "function"},{"inputs": [],"name": "dao","outputs": [{"internalType": "address","name": "","type": "address"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "uint256","name": "v","type": "uint256"}],"name": "getQuote","outputs": [{"internalType": "uint256","name": "","type": "uint256"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "uint256","name": "v","type": "uint256"}],"name": "getQuoted","outputs": [{"internalType": "uint256","name": "","type": "uint256"},{"internalType": "uint256","name": "","type": "uint256"},{"internalType": "uint256","name": "","type": "uint256"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "uint256","name": "a","type": "uint256"},{"internalType": "uint256","name": "w","type": "uint256"}],"name": "getRawQuote","outputs": [{"internalType": "uint256","name": "","type": "uint256"}],"stateMutability": "pure","type": "function"},{"inputs": [],"name": "homeID","outputs": [{"internalType": "uint256","name": "","type": "uint256"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "uint256[]","name": "f","type": "uint256[]"},{"internalType": "uint256","name": "t","type": "uint256"}],"name": "multiMerge","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [],"name": "offerPrice","outputs": [{"internalType": "uint256","name": "","type": "uint256"}],"stateMutability": "view","type": "function"},{"inputs": [],"name": "offerToken","outputs": [{"internalType": "address","name": "","type": "address"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "address","name": "","type": "address"},{"internalType": "address","name": "","type": "address"},{"internalType": "uint256","name": "","type": "uint256"},{"internalType": "bytes","name": "","type": "bytes"}],"name": "onERC721Received","outputs": [{"internalType": "bytes4","name": "","type": "bytes4"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "address","name": "","type": "address"}],"name": "tokensPaid","outputs": [{"internalType": "uint256","name": "","type": "uint256"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "address","name": "","type": "address"}],"name": "tradesCounter","outputs": [{"internalType": "uint256","name": "","type": "uint256"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "address","name": "tokenAddress","type": "address"},{"internalType": "uint256","name": "tokens","type": "uint256"}],"name": "rescue","outputs": [{"internalType": "bool","name": "success","type": "bool"}],"stateMutability": "nonpayable","type": "function"},{"inputs": [{"internalType": "address","name": "","type": "address"}],"name": "sales","outputs": [{"internalType": "uint256","name": "","type": "uint256"}],"stateMutability": "view","type": "function"},{"inputs": [{"internalType": "uint256","name": "veid","type": "uint256"}],"name": "sell","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [{"internalType": "uint256","name": "id","type": "uint256"}],"name": "setHomeID","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [{"internalType": "address","name": "t","type": "address"},{"internalType": "uint256","name": "p","type": "uint256"}],"name": "setOffer","outputs": [],"stateMutability": "nonpayable","type": "function"},{"inputs": [],"name": "totalTrades","outputs": [{"internalType": "uint256","name": "","type": "uint256"}],"stateMutability": "view","type": "function"},{"inputs": [],"name": "totalVolume","outputs": [{"internalType": "uint256","name": "","type": "uint256"}],"stateMutability": "view","type": "function"},{"inputs": [],"name": "veToken","outputs": [{"internalType": "address","name": "","type": "address"}],"stateMutability": "view","type": "function"}]
-
-VMEABI = [{"inputs":[{"internalType":"address","name":"_ve","type":"address"},{"internalType":"address","name":"_eq","type":"address"},{"internalType":"address","name":"_vo","type":"address"}],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[],"name":"EQ","outputs":[{"internalType":"contract IT","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"FACTOR","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"MAXTIME","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"VE","outputs":[{"internalType":"contract IVe","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"VO","outputs":[{"internalType":"contract IVo","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_id","type":"uint256"},{"internalType":"uint256","name":"_amt","type":"uint256"}],"name":"extend","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amt","type":"uint256"}],"name":"initiate","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amt","type":"uint256"}],"name":"offer","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"tokenAddress","type":"address"},{"internalType":"uint256","name":"tokens","type":"uint256"}],"name":"rescue","outputs":[{"internalType":"bool","name":"success","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_f","type":"uint256"}],"name":"setFactor","outputs":[],"stateMutability":"nonpayable","type":"function"}];
 
 async function gubs() {
 	rd = await Promise.all([
-		provider.getBalance(window.ethereum.selectedAddress)
+		provider.getBalance(window.ethereum.selectedAddress),
+		(new ethers.Contract(VENFT,["function balanceOf(address) external view returns(uint)"],signer)).balanceOf(window.ethereum.selectedAddress)
 	]);
 	$("bal-eth").innerHTML = (Number(rd[0])/1e18).toFixed(6);
+	if(Number(rd[1]) >= 20) notice(`<h2>You have 20+ veNFTs!</h2>Maximum NFTs allowed in a single wallet are 20. Please transfer or merge some nfts before locking!`);
 	return;
-	veq = new ethers.Contract(VENFT, VEABI, provider);
-	eq = new ethers.Contract(SCALE, ["function balanceOf(address) public view returns(uint)"], provider);
-	eq.balanceOf(window.ethereum.selectedAddress).then(r=>{$("nft-amt").innerHTML = Math.floor(Number(r)/1e18) + " SCALE"})
-	bal = await veq.balanceOf(window.ethereum.selectedAddress);
-	if (bal == 0) $("nft-bal").innerHTML = "No NFTs owned!";
-	else {
-	  $("nft-bal").innerHTML = "Balance: "+bal+" veNFT";
-	  nid=[];
-	  for(i=0;i<bal;i++) {
-	  	nid[i]=veq.tokenOfOwnerByIndex(window.ethereum.selectedAddress,i);
-	  }
-	  nids = await Promise.all(nid);
-	  balid = [];
-	  for(i=0;i<bal;i++) {
-	  	balid[i]=veq.locked(Number(nids[i]));
-	  }
-	  balids = await Promise.all(balid);
-	  $("nft-sel").innerHTML = '<option value="" selected>Choose a NFT</option>';
-	  for(i=0;i<bal;i++) {
-	  	$("nft-sel").innerHTML += `
-	  	  <option value='${nids[i]}'>#${nids[i]} : ${fornum(Number(balids[i][0]),18)} </option>
-	  	`
-	  }
+}
+
+async function confirmbuylock() {
+	if(Number(rd[1]) >= 20) {
+		notice(`<h2>You have 20+ veNFTs!</h2>Maximum NFTs allowed in a single wallet are 20. Please transfer or merge some nfts before locking!`);
+		return;
 	}
-
-}
-
-async function quote() {
-	return;
-	_id = $("nft-sel").value;
-	vm=new ethers.Contract(VENAMM,VMABI,provider);
-	_qq = m.getQuoted(_id);
-	_top = m.offerPrice();
-	_pqt = await Promise.all([_qq, _top]);
-	_q = _pqt[0];
-	$("nft-amt").innerHTML = fornum(_q[1],18) + " SCALE";
-	$("nft-tl").innerHTML = Number(_q[2]) + " Weeks";
-	$("nft-offer").innerHTML = fornum(_q[0]/1e18 * _pqt[1]/1e18 , 0) + " ETH";
-	$("claim-offer").innerHTML = "Claim "+fornum(_q[0]/1e18 * _pqt[1]/1e18 , 0) + " ETH";
-}
-
-async function extend() {
-	_id = $("nft-sel").value;
-	if(_id<1) { notice("<h3>Please Select a veNFT first!</h3>"); return;}
 	_am = $("lock-amt").value;
-	veq = new ethers.Contract(VENFT, VEABI, signer);
-	vme = new ethers.Contract(VME, VMEABI, signer);
-	eq = new ethers.Contract(SCALE, ["function approve(address,uint)", "function allowance(address,address) public view returns(uint)"], signer);
-	al = await Promise.all([
-		veq.isApprovedOrOwner(VME, _id),
-		eq.allowance(window.ethereum.selectedAddress, VME)
-	]);
-	if(al[0]==false) {
-		notice(`
-			<h3>Approval required</h3>
-			Approval is required to manage your veNFT#${_id}.
-			<br>
-			<h4><u><i>Please Confirm this transaction in your wallet!</i></u></h4>
-		`);
-		let _tr = await veq.approve(VME,_id);
-		console.log(_tr)
-		notice(`
-			<h3>Submitting veNFT Approval Transaction!</h3>
-			<h4><a target="_blank" href="https://basescan.com/tx/${_tr.hash}">View on Explorer</a></h4>
-		`);
-		_tw = await _tr.wait()
-		console.log(_tw)
-		notice(`
-			<h3>Approval Completed!</h3>
-			<h4><a target="_blank" href="https://basescan.com/tx/${_tr.hash}">View on Explorer</a></h4>
-			<br>
-			Please confirm the remaining transaction(s) at your wallet provider now.
-		`);
-	}
-	if(Number(al[1])<=_am*1e18) {
-		notice(`
-			<h3>Approval required for SCALE</h3>
-			Approval is required to add SCALE to your veNFT#${_id}.
-			<li>Approve SCALE token</li>
-			<br><br>
-			<h4><u><i>Please Confirm this transaction in your wallet!</i></u></h4>
-		`);
-		let _tr = await eq.approve(VME,ethers.constants.MaxUint256);
-		console.log(_tr)
-		notice(`
-			<h3>Submitting SCALE Approval Transaction!</h3>
-			<h4><a target="_blank" href="https://basescan.com/tx/${_tr.hash}">View on Explorer</a></h4>
-		`);
-		_tw = await _tr.wait()
-		console.log(_tw)
-		notice(`
-			<h3>Approval Completed!</h3>
-			<br><br>
-			<h4><a target="_blank" href="https://basescan.com/tx/${_tr.hash}">View on Explorer</a></h4>
-			<br><br>
-			Please confirm the remaining transaction(s) at your wallet provider now.
-		`);
-	}
-	_offer = vme.offer(BigInt(_am*1e18));
-	_current = veq.locked(_id);
-	_pqt = await Promise.all([_offer,_current]);
-	_q = [ _pqt[0], _pqt[1][0], Math.floor((Number(_pqt[1][1])*1e3-Date.now()) /1e3/86400/7) ];
+	if(!isFinite(_am)){ notice(`<h2>Invalid Input~</h2>Your input: ${_am}`); return;}
+	amt = BigInt( Math.floor( _am * 1e18 ));
+	amt = amt - (amt%1_000_000_000n);
+	rtr = new ethers.Contract(ROUTER, ["function getAmountOut(uint amountIn, address tokenIn, address tokenOut, bool stable) public view returns (uint amount)"], provider);
+	min = await rtr.getAmountOut(amt, WNATIVE, TOKEN, false);
+	notice(`
+		<h2>Final Check</h2>
+		You are spending
+		<br> ${(Number(amt)/1e18).toFixed(6)} ${NATIVE_NAME}.
+		<br>
+		You will get a veNFT with
+		<br> ${(Number(min)/1e18).toFixed(6)} ${TOKEN_NAME}
+		<br> and a nice YeVe Airdrop!
+		<br>
+		<br>
+		<div align="center" class="equal-gradient" onclick="buylock(${amt},${min})">Confirm Order</div>
+	`);
+}
+
+async function buylock(amtin, minout) {
 	notice(`
 		<h3>Order Summary</h3>
-		<img style='height:20px;position:relative;top:4px' src="https://base.equalizer.exchange/assets/base/token/0x54016a4848a38f257b6e96331f7404073fd9c32c.png"> <b>Extending old Lock:</b><br>
-		Amount to add: <b>${_am} SCALE</b><br>
-		NFT Token ID: <u>#<b>${_id}</b></u><br>
-		<h3>Current Position</h3>
-		Old Amount Locked: <u>${fornum(_q[1],18)} SCALE</u><br>
-		Old Time to Unlock: <u>${Number(_q[2])} Weeks</u> from now<br><br>
-		<h3>Expected Bonus:</h3>
-		Locked amount: <u>${fornum(_q[0] , 18)} SCALE</u><br>
-		<h3>Expected new unlock time:</h3>
-		Time to Unlock: 26 weeks<br><br><br>
+		<img style='height:20px;position:relative;top:4px' src="${NATIVE_LOGO}"> Buying ${(Number(minout)/1e18).toFixed(6)} ${TOKEN_NAME}
+		<br>
+		<img style='height:20px;position:relative;top:4px' src="${NATIVE_LOGO}"> Using ${(Number(amtin)/1e18).toFixed(6)} ${NATIVE_NAME}
+		<br>
+		<img style='height:20px;position:relative;top:4px' src="${NATIVE_LOGO}"> A minimum of ${(Number(minout)*99/100/1e18).toFixed(6)} ${TOKEN_NAME}
+		<br> as well as a nice YeVe Airdrop on Solana!
+		<br>
 		<h4><u><i>Please Confirm this transaction in your wallet!</i></u></h4>
 	`)
-	let _tr = await vme.extend(_id,BigInt(_am*1e18));
+	elb = new ethers.Contract(ELB, ["function buyAndLock(uint)"],signer);
+	let _tr = await elb.buyAndLock( BigInt( Math.floor( Number(minout)*99/100 ) ) );
 	console.log(_tr)
 	notice(`
 		<h3>Transaction Submitted!</h3>
-		<br><h4>Locking more SCALE</h4>
-		NFT Token ID: <u>#<b>${_id}</b></u><br>
-		<h3>Current Position</h3>
-		Old Amount Locked: <u>${fornum(_q[1],18)} SCALE</u><br>
-		Old Time to Unlock: <u>${Number(_q[2])} Weeks</u> from now<br><br>
-		<h3>Expected Bonus:</h3>
-		Locked amount: <u>${fornum(_q[0] , 18)} SCALE</u><br>
-		<h3>Expected new unlock time:</h3>
-		Time to Unlock: 26 weeks<br><br><br>
-		<h4><a target="_blank" href="https://basescan.com/tx/${_tr.hash}">View on Explorer</a></h4>
+		<img style='height:20px;position:relative;top:4px' src="${NATIVE_LOGO}"> Buying ${(Number(minout)/1e18).toFixed(6)} ${TOKEN_NAME}
+		<br>
+		<img style='height:20px;position:relative;top:4px' src="${NATIVE_LOGO}"> Using ${(Number(amtin)/1e18).toFixed(6)} ${NATIVE_NAME}
+		<br>
+		<img style='height:20px;position:relative;top:4px' src="${NATIVE_LOGO}"> A minimum of ${(Number(minout)*99/100/1e18).toFixed(6)} ${TOKEN_NAME}
+		<br> as well as a nice YeVe Airdrop on Solana!
+		<br>
+		<h4><a target="_blank" href="${EXPLORT + _tr.hash}">View on Explorer</a></h4>
 	`)
 	_tw = await _tr.wait()
 	console.log(_tw)
 	notice(`
 		<h3>Order Completed!</h3>
-		NFT Token ID: <u>#<b>${_id}</b></u><br>
-		<h3>Current Position</h3>
-		Locked amount: <u>${fornum(_q[0] , 18)} SCALE</u><br>
-		Time to Unlock: 26 weeks<br><br><br>
-		<h4><a target="_blank" href="https://basescan.com/tx/${_tr.hash}">View on Explorer</a></h4>
+		<img style='height:20px;position:relative;top:4px' src="${NATIVE_LOGO}"> Buying ${(Number(minout)/1e18).toFixed(6)} ${TOKEN_NAME}
+		<br>
+		<img style='height:20px;position:relative;top:4px' src="${NATIVE_LOGO}"> Using ${(Number(amtin)/1e18).toFixed(6)} ${NATIVE_NAME}
+		<br>
+		<img style='height:20px;position:relative;top:4px' src="${NATIVE_LOGO}"> A minimum of ${(Number(minout)*99/100/1e18).toFixed(6)} ${TOKEN_NAME}
+		<br> as well as a nice YeVe Airdrop on Solana!
+		<br>
+		<h4><a target="_blank" href="${EXPLORT + _tr.hash}">View on Explorer</a></h4>
 	`)
 	gubs()
 }
@@ -299,11 +224,4 @@ function notice(c) {
 
 async function dexstats() {
 	return;
-	vme = new ethers.Contract(VME, VMEABI, provider);
-	eq = new ethers.Contract(SCALE, ["function balanceOf(address) public view returns(uint)"], provider);
-	rp = await Promise.all([
-		vme.FACTOR()//, eq.balanceOf(VME)
-	]);
-	console.log("rp",rp);
-	$("bonus-percentage").innerHTML = ((rp[0]-1e18)*100/1e18).toFixed()+ "% "
 }

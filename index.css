@@ -520,6 +520,10 @@ textarea:focus, input:focus {
     justify-content: center;
 }
 #buylock-btn {
-	font-size:32px;
+	font-size:20px !important;
 	font-weight: bold;
+	width: 200px;
+}
+#nft-offer-usd, #airdrop-offer-usd {
+	display:none;
 }
