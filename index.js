@@ -167,6 +167,22 @@ async function drefresh() {
 	$("topstat-roi").innerHTML = (1+STATE.adu/(STATE.tlk*STATE.tpu)).toLocaleString('fullwide', { maximumFractionDigits: 2, useGrouping: false })+"x"
 	$("topstat-roi-apr").innerHTML = (STATE.adu/(STATE.tlk*STATE.tpu)*100).toLocaleString('fullwide', { maximumFractionDigits: 2, useGrouping: false })+"%"
 
+	if(window.ethereum && window.ethereum.selectedAddress) {
+		$("portfolio").innerHTML =`
+			<h2>Your expected Airdrop:
+				<span>
+					${((STATE.ulk/STATE.tlk)*STATE.ad).toLocaleString('fullwide', { maximumFractionDigits: 2, useGrouping: false })}
+
+				</span>
+				YeVe, worth
+				<span>
+					$${((STATE.ulk/STATE.tlk)*STATE.adu).toLocaleString('fullwide', { maximumFractionDigits: 2, useGrouping: false })}
+				</span>
+				!
+			</h2>
+		`;
+	}
+
 }
 
 async function dexstats() {
@@ -194,7 +210,7 @@ async function dexstats() {
 
 async function gubs() {
 	elbp = new ethers.Contract(ELB,["function info(address) external view returns(uint,uint,uint,uint,uint,uint,uint,uint)"],signer);
-	rd = await elbp(window.ethereum.selectedAddress);
+	rd = await elbp.info(window.ethereum.selectedAddress);
 	$("bal-eth").innerHTML = (Number(rd[0])/1e18).toFixed(6);
 	if(Number(rd[1]) >= 20) notice(`<h2>You have 20+ veNFTs!</h2>Maximum NFTs allowed in a single wallet are 20. Please transfer or merge some nfts before locking!`);
 	return;
