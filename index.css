@@ -249,7 +249,8 @@ button.submit {
   color:white;
 }
 
-.mechanism .input-amount input, .nft-amtl {
+.mechanism .input-amount input,
+.nft-amtl {
   display: inline;
   vertical-align: middle;
 }
@@ -527,7 +528,7 @@ textarea:focus, input:focus {
 }
 
 #nft-offer-usd, #airdrop-offer-usd {
-	display:none;
+	display:;
 }
 
 .topstat-container {
@@ -564,4 +565,9 @@ textarea:focus, input:focus {
 .topstat div:last-child {
     font-family: regular;
     font-size: 1em;
+}
+
+#offer-summary u {
+  text-decoration: dashed underline aqua;
+  font-size: 1.25em;
 }
