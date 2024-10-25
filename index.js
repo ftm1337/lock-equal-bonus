@@ -170,7 +170,7 @@ async function drefresh() {
 	if(window.ethereum && window.ethereum.selectedAddress) {
 		$("portfolio").innerHTML =`
 			<h2>Your expected Airdrop:</h2>
-			<h1>
+			<h1 style="margin-top:auto;">
 				<span>
 					${((STATE.ulk/STATE.tlk)*STATE.ad).toLocaleString('fullwide', { maximumFractionDigits: 2})}
 
