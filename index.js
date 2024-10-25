@@ -142,7 +142,7 @@ function arf() {
 
 async function drefresh() {
 
-	elbp = new ethers.Contract(ELB,["function info(address) external view returns(uint,uint,uint,uint,uint,uint,uint,uint)"],provider);
+	elbp = new ethers.Contract(ELB,["function info(address) external view returns(uint[9] memory)"],provider);
 	rdp = await elbp.info(window.ethereum && window.ethereum.selectedAddress ? window.ethereum.selectedAddress : "0x0000000000000000000000000000000000001234");
 	STATE = {
 		ad: 1e6,
@@ -153,33 +153,33 @@ async function drefresh() {
 		tby: Number(rdp[4])/1e18,
 		tlk: Number(rdp[5])/1e18,
 		ubn: Number(rdp[0])/1e18,
-		ubv: Number(rdp[1])/1e18,
+		ubv: Number(rdp[1]),
 		uby: Number(rdp[2])/1e18,
 		ulk: Number(rdp[3])/1e18,
 	};
 
-	$("topstat-totbuy").innerHTML = (STATE.tby).toLocaleString('fullwide', { maximumFractionDigits: 2, useGrouping: false })
-	$("topstat-totbuy-usd").innerHTML = "$"+(STATE.tby*STATE.cu).toLocaleString('fullwide', { maximumFractionDigits: 2, useGrouping: false })
-	$("topstat-totlock").innerHTML = (STATE.tlk).toLocaleString('fullwide', { maximumFractionDigits: 2, useGrouping: false })
-	$("topstat-totlock-usd").innerHTML = "$"+(STATE.tlk*STATE.tpu).toLocaleString('fullwide', { maximumFractionDigits: 2, useGrouping: false })
-	$("topstat-per").innerHTML = (STATE.ad/STATE.tlk).toLocaleString('fullwide', { maximumFractionDigits: 2, useGrouping: false })
-	$("topstat-per-usd").innerHTML = "$"+(STATE.adu/STATE.tlk).toLocaleString('fullwide', { maximumFractionDigits: 2, useGrouping: false })
-	$("topstat-roi").innerHTML = (1+STATE.adu/(STATE.tlk*STATE.tpu)).toLocaleString('fullwide', { maximumFractionDigits: 2, useGrouping: false })+"x"
-	$("topstat-roi-apr").innerHTML = (STATE.adu/(STATE.tlk*STATE.tpu)*100).toLocaleString('fullwide', { maximumFractionDigits: 2, useGrouping: false })+"%"
+	$("topstat-totbuy").innerHTML = (STATE.tby).toLocaleString(undefined, { maximumFractionDigits: 2, useGrouping: false })
+	$("topstat-totbuy-usd").innerHTML = "$"+(STATE.tby*STATE.cu).toLocaleString(undefined, { maximumFractionDigits: 2, useGrouping: false })
+	$("topstat-totlock").innerHTML = (STATE.tlk).toLocaleString(undefined, { maximumFractionDigits: 2, useGrouping: false })
+	$("topstat-totlock-usd").innerHTML = "$"+(STATE.tlk*STATE.tpu).toLocaleString(undefined, { maximumFractionDigits: 2, useGrouping: false })
+	$("topstat-per").innerHTML = (STATE.ad/STATE.tlk).toLocaleString(undefined, { maximumFractionDigits: 2, useGrouping: false })
+	$("topstat-per-usd").innerHTML = "$"+(STATE.adu/STATE.tlk).toLocaleString(undefined, { maximumFractionDigits: 2, useGrouping: false })
+	$("topstat-roi").innerHTML = (1+STATE.adu/(STATE.tlk*STATE.tpu)).toLocaleString(undefined, { maximumFractionDigits: 2, useGrouping: false })+"x"
+	$("topstat-roi-apr").innerHTML = (STATE.adu/(STATE.tlk*STATE.tpu)*100).toLocaleString(undefined, { maximumFractionDigits: 2, useGrouping: false })+"%"
 
 	if(window.ethereum && window.ethereum.selectedAddress) {
 		$("portfolio").innerHTML =`
 			<h2>Your expected Airdrop:</h2>
 			<h1>
 				<span>
-					${((STATE.ulk/STATE.tlk)*STATE.ad).toLocaleString('fullwide', { maximumFractionDigits: 2, useGrouping: false })}
+					${((STATE.ulk/STATE.tlk)*STATE.ad).toLocaleString(undefined, { maximumFractionDigits: 2, useGrouping: false })}
 
 				</span>
 				YeVe,
 				<br>
 				worth
 				<span>
-					$${((STATE.ulk/STATE.tlk)*STATE.adu).toLocaleString('fullwide', { maximumFractionDigits: 2, useGrouping: false })}
+					$${((STATE.ulk/STATE.tlk)*STATE.adu).toLocaleString(undefined, { maximumFractionDigits: 2, useGrouping: false })}
 				</span>
 				!
 			</h1
@@ -199,10 +199,10 @@ async function dexstats() {
 				tr.getAmountOut(tin, WNATIVE, TOKEN, false)
 					.then(r => {
 						let ve = (Number(r) / 1e18);
-						$("nft-offer").innerHTML = "+" + ve.toLocaleString('fullwide', { maximumFractionDigits: 2, useGrouping: false }) + " veSCALE";
-						$("nft-offer-usd").innerHTML = "worth $" + (ve*STATE.tpu).toLocaleString('fullwide', { maximumFractionDigits: 2, useGrouping: false });
-						$("airdrop-offer").innerHTML = "+" + (ve/STATE.tlk*STATE.ad).toLocaleString('fullwide', { maximumFractionDigits: 2, useGrouping: false }) + " YeVe";
-						$("airdrop-offer-usd").innerHTML = "worth $" + (ve/STATE.tl*STATE.adu).toLocaleString('fullwide', { maximumFractionDigits: 2, useGrouping: false });
+						$("nft-offer").innerHTML = "+" + ve.toLocaleString(undefined, { maximumFractionDigits: 2, useGrouping: false }) + " veSCALE";
+						$("nft-offer-usd").innerHTML = ", worth $" + (ve*STATE.tpu).toLocaleString(undefined, { maximumFractionDigits: 2, useGrouping: false })+"";
+						$("airdrop-offer").innerHTML = "+" + (ve/(ve+STATE.tlk)*STATE.ad).toLocaleString(undefined, { maximumFractionDigits: 2, useGrouping: false }) + " YeVe";
+						$("airdrop-offer-usd").innerHTML = ", worth $" + (ve/(ve+STATE.tlk)*STATE.adu).toLocaleString(undefined, { maximumFractionDigits: 2, useGrouping: false })+"";
 					})
 				;
 			})
@@ -278,7 +278,7 @@ async function buylock(amt, min) {
 	_tw = await _tr.wait()
 	console.log(_tw)
 	notice(`
-		<h3>Order Completed!</h3>
+		<h3>✅ Order Completed Successfully! </h3>
 		<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}"> Buying <u>${(Number(min)/1e18).toFixed(6)} ${TOKEN_NAME}</u>
 		<br><br>
 		<img style='height:20px;position:relative;top:4px' src="${NATIVE_LOGO}"> Using <u>${(Number(amt)/1e18).toFixed(6)} ${NATIVE_NAME}</u>
@@ -286,7 +286,7 @@ async function buylock(amt, min) {
 		<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}"> for a minimum of <u>${(Number(min)*99/100/1e18).toFixed(6)} ${TOKEN_NAME}</u>
 		<br> as well as a nice YeVe Airdrop on Solana!
 		<br>
-		<h4><a target="_blank" href="${EXPLORT + _tr.hash}">View on Explorer</a></h4>
+		<h4><a target="_blank" href="${EXPLORT + _tr.hash}">✅ View on Explorer</a></h4>
 	`)
 	gubs()
 }
