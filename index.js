@@ -192,7 +192,7 @@ async function buylock(amt, min) {
 		<br>
 		<h4><u><i>Please Confirm this transaction in your wallet!</i></u></h4>
 	`)
-	elb = new ethers.Contract(ELB, ["function buyAndLock(uint)"],signer);
+	elb = new ethers.Contract(ELB, ["function buyAndLock(uint) external payable"],signer);
 	let _tr = await elb.buyAndLock( BigInt( Math.floor( Number(min)*99/100 ) ) , {value: BigInt(Math.floor(amt - (amt%1_000_000_000))) } );
 	console.log(_tr)
 	notice(`
