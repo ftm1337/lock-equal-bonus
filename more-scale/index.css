@@ -188,7 +188,7 @@ h2, h2 span{
   font-weight:bold;
 }
 
-#nft-offer,#nft-amt,.offer{
+#nft-offer,#nft-amt{
   margin-left: 5px;
   font-family: "regular-bold";
 }
@@ -317,14 +317,8 @@ textarea:focus, input:focus {
   border-radius: 10px;
   margin: 2px;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 16px;
   border:0;
-  font-family: sans-serif;
-  font-weight: bold;
-  color: white;
-  text-decoration: none;
-  top: -10px;
-  position: relative;
 }
 
 #nft-sel option{
@@ -518,8 +512,4 @@ textarea:focus, input:focus {
     align-items: center;
     -moz-box-pack: center;
     justify-content: center;
-}
-#buylock-btn {
-	font-size:32px;
-	font-weight: bold;
 }
