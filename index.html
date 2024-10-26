@@ -142,7 +142,7 @@
           ></div>
           <div
             data-orientation="horizontal"
-            class="max-w-fit gap-2 rounded-xl bg-neutral shadow-[0px_1px_2px_0px_hsla(0,0%,0%,0.75)_inset,0px_-1px_0px_0px_hsla(0,0%,100%,0.08)_inset] data-[orientation=horizontal]:flex-row data-[orientation=vertical]:flex-col data-[orientation=vertical]:p-4 data-[orientation=horizontal]:px-4 data-[orientation=horizontal]:py-2 hidden md:flex"
+            class="max-w-fit gap-2 rounded-xl bg-neutral shadow-[0px_1px_2px_0px_hsla(0,0%,0%,0.75)_inset,0px_-1px_0px_0px_hsla(0,0%,100%,0.08)_inset] data-[orientation=horizontal]:flex-row data-[orientation=vertical]:flex-col data-[orientation=vertical]:p-4 data-[orientation=horizontal]:px-4 data-[orientation=horizontal]:py-2 hidden md:flex items-center"
           >
             <a
               class="flex flex-row items-center disabled:pointer-events-none border border-transparent hover:bg-accent hover:text-white h-8 gap-2 rounded-md px-2.5 py-1.5 text-sm text-neutral-300 data-[orientation=vertical]:justify-start data-[orientation=horizontal]:justify-center justify-center"
@@ -353,52 +353,85 @@
           </svg>
         </button>
       </header>
-      <div class="flex flex-col gap-4">
-        <div class="partnership">
-          <h1><span>veSCALE Lock Bonus</span></h1>
-          <h2 class="text-regular">
-            Get a <span>YeVe Airdrop</span> by acquiring veSCALE
-          </h2>
-        </div>
-        <div class="mechanism">
-          <div class="amount">
-            <br />
-            <br />
-            <a
-              align="center"
-              class="flex flex-row items-center justify-center text-white disabled:pointer-events-none border-gradient-primary bg-gradient-to-b from-primary-500 via-primary-700 to-primary-800 shadow-[0px_1px_0.5px_0px_#ffffff40_inset] outline outline-1 outline-offset-1 outline-primary-800 drop-shadow-[0px_1px_2px_0px_#00000029] transition-all hover:from-primary-600 hover:via-primary-700 hover:to-primary-800 focus-visible:ring-2 focus-visible:ring-primary-600/30 focus-visible:ring-offset-2 focus-visible:ring-offset-black disabled:text-primary-300 h-9 gap-2 rounded-md px-3 py-2 text-sm"
-              target="_blank"
-              href="https://base.equalizer.exchange/swap?fromToken=0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913&toToken=0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
-              >Get ETH on Equalizer</a
+      <div class="flex flex-col gap-3">
+        <div class="partnership" id="portfolio">
+          <p class="text-white text-lg font-regular">
+            Please
+            <span onclick="cw()" class="text-secondary-300"
+              >Connect your Wallet</span
             >
+            to participate in Airdrop!
+          </p>
+        </div>
+
+        <div class="mechanism">
+          <div class="text-left">
+            <p class="text-lg text-white">veSCALE Lock Bonus</p>
+            <p class="text-sm text-neutral-300">
+              Get a YeVe Airdrop by acquiring veSCALE
+            </p>
           </div>
+          <br />
           <div class="input-amount">
-            <br /><span>Available ETH Balance:</span> <br /><br />
-            <img src="https://ftm.guru/icons/eth.svg" />
-            <span class="nft-amtl" id="bal-eth">? ETH</span>
-            <br /><br />
-            <br /><span>How much veSCALE do you want to buy & Lock?</span>
-            <br /><br />
-            <span class="nft-amtl" id="nft-tl"
-              ><input placeholder="Amount in ETH" id="lock-amt"
-            /></span>
+            <div class="flex flex-col gap-4">
+              <div class="flex flex-row w-full items-center justify-between">
+                <span class="text-sm text-neutral-300"
+                  >Available ETH Balance:</span
+                >
+                <a
+                  align="center"
+                  class="flex flex-row items-center justify-center text-white disabled:pointer-events-none border-gradient-primary bg-gradient-to-b from-primary-500 via-primary-700 to-primary-800 shadow-[0px_1px_0.5px_0px_#ffffff40_inset] outline outline-1 outline-offset-1 outline-primary-800 drop-shadow-[0px_1px_2px_0px_#00000029] transition-all hover:from-primary-600 hover:via-primary-700 hover:to-primary-800 focus-visible:ring-2 focus-visible:ring-primary-600/30 focus-visible:ring-offset-2 focus-visible:ring-offset-black disabled:text-primary-300 h-9 gap-2 rounded-md px-3 py-2 text-sm"
+                  target="_blank"
+                  href="https://base.equalizer.exchange/swap?fromToken=0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913&toToken=0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+                  >Get ETH on Equalizer</a
+                >
+              </div>
+              <div
+                class="flex flex-row items-center rounded-xl border border-neutral-600 bg-neutral-700 p-3"
+              >
+                <img
+                  src="https://ftm.guru/icons/eth.svg"
+                  class="max-h-[50px]"
+                />
+                <span class="nft-amtl" id="bal-eth">? ETH</span>
+              </div>
+            </div>
+
+            <br />
+            <span class="mb-2 text-sm text-neutral-300"
+              >How much veSCALE do you want to buy & Lock?</span
+            >
+            <input
+              class="flex w-full mt-1 rounded-md text-sm focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 file:border-0 file:bg-transparent file:text-sm file:font-medium border border-neutral-600 hover:border-primary-900 focus-visible:border-primary-900 placeholder-neutral-400 placeholder-opacity-100 focus-visible:ring-2 focus-visible:ring-primary-600/[0.28] bg-neutral-700 text-white h-10 px-3 py-2"
+              placeholder="Amount in ETH"
+              value=""
+            />
             <br />
             <br />
             <div class="hr-nft"></div>
             <br />
-            <span id="offer-summary">You will get</span>
-            <br /><br />
-            <img
-              src="https://cdn.jsdelivr.net/gh/unified-defi/equalizer-tokens@latest/base/tokens/128x128/0x54016a4848a38f257b6e96331f7404073fd9c32c.png"
-            />
-            <div class="nft-amtl offer" id="nft-offer">+? veSCALE</div>
-            <div class="nft-amtl" id="nft-offer-usd">, (+$?.00)</div>
-            <br /><br />
-            <img src="https://ftm.guru/icons/yeve.svg" />
-            <span class="nft-amtl offer" id="airdrop-offer"
-              >+? YeVe Airdrop</span
-            >
-            <span class="nft-amtl" id="airdrop-offer-usd">, (+$?.00)</span>
+            <div class="flex flex-col">
+              <span id="offer-summary" class="mb-1 text-sm text-neutral-300"
+                >You will get</span
+              >
+              <div
+                class="flex flex-col gap-3 rounded-xl border border-neutral-600 bg-neutral-700 p-3"
+              >
+                <div class="flex flex-row items-center">
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/unified-defi/equalizer-tokens@latest/base/tokens/128x128/0x54016a4848a38f257b6e96331f7404073fd9c32c.png"
+                    class="mr-2"
+                  />
+                  <div id="nft-offer">+? veSCALE</div>
+                  <div id="nft-offer-usd">, (+$?.00)</div>
+                </div>
+                <div class="flex flex-row items-center">
+                  <img src="https://ftm.guru/icons/yeve.svg" class="mr-2" />
+                  <span id="airdrop-offer">+? YeVe Airdrop</span>
+                  <span id="airdrop-offer-usd">, (+$?.00)</span>
+                </div>
+              </div>
+            </div>
           </div>
           <br /><br /><br /><br />
           <div style="margin-top: -25px" align="center">
@@ -411,56 +444,47 @@
           </div>
         </div>
 
-        <div class="partnership" id="portfolio">
-          <h2>
-            Please <span onclick="cw()">Connect your Wallet</span> to
-            participate in Airdrop!
-          </h2>
-        </div>
-
-        <div class="topstat-container">
-          <div class="w-full grid grid-cols-5 gap-4">
-            <div
-              class="flex flex-col gap-3 rounded-xl border border-neutral-600 bg-neutral-700 p-3"
-            >
-              <p class="text-sm text-neutral-300">Airdrop Net Valuation</p>
-              <p class="text-md text-white">$160,000 USD</p>
-              <p class="text-md text-white">1,000,000 YeVe</p>
-            </div>
-            <div
-              class="flex flex-col gap-3 rounded-xl border border-neutral-600 bg-neutral-700 p-3"
-            >
-              <p class="text-sm text-neutral-300">Total Buy-ins on SCALE</p>
-              <p class="text-md text-white">? USD</p>
-              <p class="text-md text-white">? ETH</p>
-            </div>
-            <div
-              class="flex flex-col gap-3 rounded-xl border border-neutral-600 bg-neutral-700 p-3"
-            >
-              <p class="text-sm text-neutral-300">SCALE Locked so far</p>
-              <p class="text-md text-white">? USD</p>
-              <p class="text-md text-white">? SCALE</p>
-            </div>
-            <div
-              class="flex flex-col gap-3 rounded-xl border border-neutral-600 bg-neutral-700 p-3"
-            >
-              <p class="text-sm text-neutral-300">Airdrop per 1 SCALE</p>
-              <p class="text-md text-white">? USD</p>
-              <p class="text-md text-white">? YeVe</p>
-            </div>
-            <div
-              class="flex flex-col gap-3 rounded-xl border border-neutral-600 bg-neutral-700 p-3"
-            >
-              <p class="text-sm text-neutral-300">Return on Investment</p>
-              <p class="text-md text-white">1.? x</p>
-              <p class="text-md text-white">? %</p>
-            </div>
+        <div class="w-full grid grid-cols-5 gap-4 px-10 mt-8">
+          <div
+            class="flex flex-col gap-3 rounded-xl border border-neutral-600 bg-neutral-700 p-3"
+          >
+            <p class="text-sm text-neutral-300">Airdrop Net Valuation</p>
+            <p class="text-md text-white">$160,000 USD</p>
+            <p class="text-md text-white">1,000,000 YeVe</p>
+          </div>
+          <div
+            class="flex flex-col gap-3 rounded-xl border border-neutral-600 bg-neutral-700 p-3"
+          >
+            <p class="text-sm text-neutral-300">Total Buy-ins on SCALE</p>
+            <p class="text-md text-white">? USD</p>
+            <p class="text-md text-white">? ETH</p>
+          </div>
+          <div
+            class="flex flex-col gap-3 rounded-xl border border-neutral-600 bg-neutral-700 p-3"
+          >
+            <p class="text-sm text-neutral-300">SCALE Locked so far</p>
+            <p class="text-md text-white">? USD</p>
+            <p class="text-md text-white">? SCALE</p>
+          </div>
+          <div
+            class="flex flex-col gap-3 rounded-xl border border-neutral-600 bg-neutral-700 p-3"
+          >
+            <p class="text-sm text-neutral-300">Airdrop per 1 SCALE</p>
+            <p class="text-md text-white">? USD</p>
+            <p class="text-md text-white">? YeVe</p>
+          </div>
+          <div
+            class="flex flex-col gap-3 rounded-xl border border-neutral-600 bg-neutral-700 p-3"
+          >
+            <p class="text-sm text-neutral-300">Return on Investment</p>
+            <p class="text-md text-white">1.? x</p>
+            <p class="text-md text-white">? %</p>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="extra">
+    <!-- <div class="extra">
       <small id="stats">
         <br />
         <br />Current Bonus: ? % <br />Available Incentives: ? SCALE
@@ -471,7 +495,7 @@
         >
       </h1>
       <h3>Powered by Guru Network</h3>
-    </div>
+    </div> -->
 
     <br /><br />
     <br /><br />
