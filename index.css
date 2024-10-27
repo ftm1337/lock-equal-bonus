@@ -1259,24 +1259,33 @@ input:focus {
 
 .topstat {
   background: #4567;
+  background-color: hsl(220 39% 19% / var(--tw-bg-opacity));
   padding: 20px;
   border-radius: 10px;
   margin: 10px;
   flex: 1;
   min-width: 200px;
   text-align: center;
+  border-color: hsl(220 39% 25%);
+  border-width: 1px;
 }
 
 .topstat div:first-child {
   font-family: bold;
-  font-size: 1.5em;
+  font-size: 1em;
 }
 
 .topstat div:nth-child(2) {
-  font-size: 1.5em;
+  font-size: 1em;
 }
 
 .topstat div:last-child {
-  font-family: regular;
-  font-size: 1em;
+  font-family: sans-serif;
+  color: hsl(220 33% 67%);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+#portfolio {
+  margin:2rem auto;
 }

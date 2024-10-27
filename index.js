@@ -160,7 +160,7 @@ async function drefresh() {
 
 	$("topstat-totbuy").innerHTML = (STATE.tby).toLocaleString('fullwide', { maximumFractionDigits: 4}) + " ETH"
 	$("topstat-totbuy-usd").innerHTML = "$"+(STATE.tby*STATE.cu).toLocaleString('fullwide', { maximumFractionDigits: 2}) +" USD"
-	$("topstat-totlock").innerHTML =  `<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}"> ` + (STATE.tlk).toLocaleString('fullwide', { maximumFractionDigits: 0})
+	$("topstat-totlock").innerHTML =  (STATE.tlk).toLocaleString('fullwide', { maximumFractionDigits: 0}) + " " + TOKEN_NAME
 	$("topstat-totlock-usd").innerHTML = "$"+(STATE.tlk*STATE.tpu).toLocaleString('fullwide', { maximumFractionDigits: 2}) +" USD"
 	$("topstat-per").innerHTML = (STATE.ad/STATE.tlk).toLocaleString('fullwide', { maximumFractionDigits: 2})
 	$("topstat-per-usd").innerHTML = "$"+(STATE.adu/STATE.tlk).toLocaleString('fullwide', { maximumFractionDigits: 2}) +" USD"
@@ -199,7 +199,7 @@ async function dexstats() {
 				tr.getAmountOut(tin, WNATIVE, TOKEN, false)
 					.then(r => {
 						let ve = (Number(r) / 1e18);
-						$("nft-offer").innerHTML = "+" + ve.toLocaleString('fullwide', { maximumFractionDigits: ve>=1e4?0:2}) + " veSCALE";
+						$("nft-offer").innerHTML = "+" + ve.toLocaleString('fullwide', { maximumFractionDigits: ve>=1e4?0:2}) + " " + VE_NAME;
 						$("nft-offer-usd").innerHTML = ", worth $" + (ve*STATE.tpu).toLocaleString('fullwide', { maximumFractionDigits: ve>=1e4?0:2})+"";
 						$("airdrop-offer").innerHTML = "+" + (ve/(ve+STATE.tlk)*STATE.ad).toLocaleString('fullwide', { maximumFractionDigits: 2}) + " YeVe";
 						$("airdrop-offer-usd").innerHTML = ", worth $" + (ve/(ve+STATE.tlk)*STATE.adu).toLocaleString('fullwide', { maximumFractionDigits: 2})+"";

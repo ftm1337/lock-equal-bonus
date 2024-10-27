@@ -83,6 +83,12 @@
                 DEFAULT: "hsl(354, 79%, 33%)",
                 foreground: "hsl(0, 81%, 62%)",
               },
+              dimmer: {
+                DEFAULT: "rgba(255, 255, 255, 0.5)",
+                outline: "rgba(255, 255, 255, 0.25)",
+                backdrop: "rgba(255, 255, 255, 0.15)",
+                foreground: "rgba(255, 255, 255, 0.25)",
+              },
               ring: "hsl(220, 39%, 25%)",
             },
             borderRadius: {
@@ -354,21 +360,12 @@
         </button>
       </header>
       <div class="flex flex-col gap-3">
-        <div class="partnership" id="portfolio">
-          <p class="text-white text-lg font-regular">
-            Please
-            <span onclick="cw()" class="text-secondary-300"
-              >Connect your Wallet</span
-            >
-            to participate in Airdrop!
-          </p>
-        </div>
 
         <div class="mechanism">
           <div class="text-left">
             <p class="text-lg text-white">veSCALE Lock Bonus</p>
             <p class="text-sm text-neutral-300">
-              Get a YeVe Airdrop by acquiring veSCALE
+              Get YeVe Airdrops by acquiring veSCALE
             </p>
           </div>
           <br />
@@ -378,6 +375,11 @@
                 <span class="text-sm text-neutral-300"
                   >Available ETH Balance:</span
                 >
+                <span id="bal-eth"  class="text-sm text-neutral-300"
+                  >-.--</span
+                >
+              </div>
+              <div class="flex flex-row w-full items-center justify-between">
                 <a
                   align="center"
                   class="flex flex-row items-center justify-center text-white disabled:pointer-events-none border-gradient-primary bg-gradient-to-b from-primary-500 via-primary-700 to-primary-800 shadow-[0px_1px_0.5px_0px_#ffffff40_inset] outline outline-1 outline-offset-1 outline-primary-800 drop-shadow-[0px_1px_2px_0px_#00000029] transition-all hover:from-primary-600 hover:via-primary-700 hover:to-primary-800 focus-visible:ring-2 focus-visible:ring-primary-600/30 focus-visible:ring-offset-2 focus-visible:ring-offset-black disabled:text-primary-300 h-9 gap-2 rounded-md px-3 py-2 text-sm"
@@ -386,34 +388,39 @@
                   >Get ETH on Equalizer</a
                 >
               </div>
-              <div
-                class="flex flex-row items-center rounded-xl border border-neutral-600 bg-neutral-700 p-3"
-              >
-                <img
-                  src="https://ftm.guru/icons/eth.svg"
-                  class="max-h-[50px]"
-                />
-                <span class="nft-amtl" id="bal-eth">? ETH</span>
-              </div>
             </div>
 
             <br />
-            <span class="mb-2 text-sm text-neutral-300"
+            <div class="hr-nft"></div>
+            <br />
+            <span class="mb-2 text-sm text-white"
               >How much veSCALE do you want to buy & Lock?</span
             >
-            <input
-              class="flex w-full mt-1 rounded-md text-sm focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 file:border-0 file:bg-transparent file:text-sm file:font-medium border border-neutral-600 hover:border-primary-900 focus-visible:border-primary-900 placeholder-neutral-400 placeholder-opacity-100 focus-visible:ring-2 focus-visible:ring-primary-600/[0.28] bg-neutral-700 text-white h-10 px-3 py-2"
-              placeholder="Amount in ETH"
-              value=""
-            />
             <br />
             <br />
-            <div class="hr-nft"></div>
+            <div
+              style="display: grid;grid-template-columns: max-content auto;"
+              class="flex flex-col gap-3 rounded-xl border border-neutral-600 bg-neutral-700 p-3"
+              >
+              <img
+                src="https://ftm.guru/icons/eth.svg"
+                class="max-h-[50px]"
+              />
+              <input
+                class="flex w-full mt-1 rounded-md text-sm focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 file:border-0 file:bg-transparent file:text-sm file:font-medium border border-neutral-600 hover:border-primary-900 focus-visible:border-primary-900 placeholder-neutral-400 placeholder-opacity-100 focus-visible:ring-2 focus-visible:ring-primary-600/[0.28] bg-neutral-700 text-white h-10 px-3 py-2"
+                placeholder="Enter Amount in ETH"
+                value=""
+                id="lock-amt"
+              />
+            </div>
             <br />
             <div class="flex flex-col">
               <span id="offer-summary" class="mb-1 text-sm text-neutral-300"
                 >You will get</span
               >
+              <br />
+              <br />
+              <br />
               <div
                 class="flex flex-col gap-3 rounded-xl border border-neutral-600 bg-neutral-700 p-3"
               >
@@ -423,17 +430,18 @@
                     class="mr-2"
                   />
                   <div id="nft-offer">+? veSCALE</div>
-                  <div id="nft-offer-usd">, (+$?.00)</div>
+                  <div id="nft-offer-usd"> </div>
                 </div>
                 <div class="flex flex-row items-center">
                   <img src="https://ftm.guru/icons/yeve.svg" class="mr-2" />
                   <span id="airdrop-offer">+? YeVe Airdrop</span>
-                  <span id="airdrop-offer-usd">, (+$?.00)</span>
+                  <span id="airdrop-offer-usd"> </span>
                 </div>
               </div>
             </div>
           </div>
-          <br /><br /><br /><br />
+          <br />
+          <br />
           <div style="margin-top: -25px" align="center">
             <button
               class="flex flex-row items-center justify-center text-white disabled:pointer-events-none border-gradient-primary bg-gradient-to-b from-primary-500 via-primary-700 to-primary-800 shadow-[0px_1px_0.5px_0px_#ffffff40_inset] outline outline-1 outline-offset-1 outline-primary-800 drop-shadow-[0px_1px_2px_0px_#00000029] transition-all hover:from-primary-600 hover:via-primary-700 hover:to-primary-800 focus-visible:ring-2 focus-visible:ring-primary-600/30 focus-visible:ring-offset-2 focus-visible:ring-offset-black disabled:text-primary-300 h-9 gap-2 rounded-md px-3 py-2 text-sm"
@@ -444,6 +452,17 @@
           </div>
         </div>
 
+        <div class="partnership" id="portfolio">
+          <p class="text-white text-lg font-regular">
+            Please
+            <span onclick="cw()" class="text-secondary-300"
+              >Connect your Wallet</span
+            >
+            to participate in Airdrop!
+          </p>
+        </div>
+
+        <!--
         <div class="w-full grid grid-cols-5 gap-4 px-10 mt-8">
           <div
             class="flex flex-col gap-3 rounded-xl border border-neutral-600 bg-neutral-700 p-3"
@@ -483,7 +502,8 @@
         </div>
       </div>
     </div>
-<!-- old
+    -->
+
     <div class="topstat-container" align="center">
       <div class="topstats">
         <div class="topstat">
@@ -848,30 +868,7 @@
                     rel="noopener noreferrer"
                     class="flex items-center gap-1.5 text-sm text-white transition-all duration-300 ease-in-out hover:text-neutral-300"
                     href="https://sonic.equalizer.exchange"
-                    >Main App</a
-                  >
-                </li>
-                <li>
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="flex items-center gap-1.5 text-sm text-white transition-all duration-300 ease-in-out hover:text-neutral-300"
-                    href="https://sonic-beta.equalizer.exchange"
-                    >Beta Site
-                    <div
-                      class="flex flex-row items-center rounded-md border max-h-[22px] text-[10px] w-fit gap-1 whitespace-nowrap px-1.5 py-0.5 border-error-foreground/50 bg-error-foreground/25 text-[#FF6C66] sm"
-                    >
-                      beta
-                    </div></a
-                  >
-                </li>
-                <li>
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="flex items-center gap-1.5 text-sm text-neutral-300 transition-all duration-300 ease-in-out hover:text-neutral-300"
-                    href="https://sonic-legacy.equalizer.exchange"
-                    >Legacy Site</a
+                    >Alpha App</a
                   >
                 </li>
               </ul>
@@ -912,7 +909,12 @@
                     rel="noopener noreferrer"
                     class="flex items-center gap-1.5 text-sm text-neutral-300 transition-all duration-300 ease-in-out hover:text-neutral-300"
                     href="https://base-legacy.equalizer.exchange"
-                    >Legacy Site</a
+                    >Legacy Site
+                    <div
+                      class="flex flex-row items-center rounded-md border max-h-[22px] text-[10px] w-fit gap-1 whitespace-nowrap px-1.5 py-0.5 border-dimmer-outline/25 bg-dimmer-backdrop/15 text-[#EEEEEE] sm"
+                    >
+                      v3
+                    </div></a
                   >
                 </li>
               </ul>
@@ -953,7 +955,26 @@
                     rel="noopener noreferrer"
                     class="flex items-center gap-1.5 text-sm text-neutral-300 transition-all duration-300 ease-in-out hover:text-neutral-300"
                     href="https://legacy.equalizer.exchange"
-                    >Legacy Site</a
+                    >Legacy Site
+                    <div
+                      class="flex flex-row items-center rounded-md border max-h-[22px] text-[10px] w-fit gap-1 whitespace-nowrap px-1.5 py-0.5 border-dimmer-outline/25 bg-dimmer-backdrop/15 text-[#EEEEEE] sm"
+                    >
+                      v3
+                    </div></a
+                  >
+                </li>
+                <li>
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex items-center gap-1.5 text-sm text-neutral-300 transition-all duration-300 ease-in-out hover:text-neutral-300"
+                    href="https://migrate.equalizer.exchange"
+                    >Legacy Site
+                    <div
+                      class="flex flex-row items-center rounded-md border max-h-[22px] text-[10px] w-fit gap-1 whitespace-nowrap px-1.5 py-0.5 border-dimmer-outline/25 bg-dimmer-backdrop/15 text-[#EEEEEE] sm"
+                    >
+                      v1
+                    </div></a
                   >
                 </li>
               </ul>
@@ -1059,32 +1080,14 @@
             >
               Built by Unified
             </div>
-            <div
-              class="font-mono text-xs text-neutral-300"
-              style="opacity: 1; will-change: transform; transform: none"
-            >
-              Powered by Elite
-            </div>
           </div>
         </div>
       </footer>
     </div>
     <br /><br />
 
-    <!-- <div id="note" class="overlay">
-    <div class="popup">
-      <a class="close" href="#">&times;</a>
-      <div class="content" id="content1">
-        <h3>Equalizer: Lock Bonus</h3>
-        This dApp allows anyone to participate int the Locking Contest for
-        Buying and Adding fresh new SCALE to a max-lock of 26 weeks to get an
-        additional YeVe Airdrop allocation on Solana chain!
-      </div>
-    </div>
-  </div> -->
-
     <!-- IGNORE BELOW BLOCK : DEV LOGS -->
-    <!-- <div style="display: none">
+    <div style="display: none">
     <span id="cw_m"></span>
     <div id="connect">
       Please connect your web3 wallet.
@@ -1104,7 +1107,19 @@
           style="position: relative; top: 4px" />Base Mainnet.
         <a href="index.html" style="color: aqua; font-family: bold">Change?</a></span>
     </div>
-  </div> -->
+  </div>
+
+  <div id="note" class="overlay">
+    <div class="popup">
+      <a class="close" href="#">&times;</a>
+      <div class="content" id="content1">
+        <h3>Equalizer: Lock Bonus</h3>
+        This dApp allows anyone to participate int the Locking Contest for
+        Buying and Adding fresh new SCALE to a max-lock of 26 weeks to get an
+        additional YeVe Airdrop allocation on Solana chain!
+      </div>
+    </div>
+  </div>
     <!-- IGNORE ABOVE BLOCK : DEV LOGS -->
     <script
       src="https://ftm.guru/ethers-5.2.umd.min.js"
@@ -1137,6 +1152,7 @@
       NATIVE_LOGO = "https://ftm.guru/icons/eth.svg";
       TOKEN_LOGO =
         "https://cdn.jsdelivr.net/gh/unified-defi/equalizer-tokens@latest/base/tokens/128x128/0x54016a4848a38f257b6e96331f7404073fd9c32c.png";
+      VE_NAME = "veSCALE";
     </script>
   </body>
 </html>
