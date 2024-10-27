@@ -168,21 +168,24 @@ async function drefresh() {
 	$("topstat-roi-apr").innerHTML = (STATE.adu/(STATE.tlk*STATE.tpu)*100).toLocaleString('fullwide', { maximumFractionDigits: 2})+"%"
 
 	if(window.ethereum && window.ethereum.selectedAddress) {
+		// if(true) {
 		$("portfolio").innerHTML =`
+			<div class="text-xl">
 			<h2>Your expected Airdrop:</h2>
 			<h1 style="margin-top:auto;">
-				<span>
+				<span class="text-secondary-300">
 					${((STATE.ulk/STATE.tlk)*STATE.ad).toLocaleString('fullwide', { maximumFractionDigits: 2})}
 
 				</span>
 				YeVe,
 				<br>
 				worth
-				<span>
+				<span class="text-secondary-300">
 					$${((STATE.ulk/STATE.tlk)*STATE.adu).toLocaleString('fullwide', { maximumFractionDigits: 2})}
 				</span>
 				!
-			</h1
+			</h1>
+			</div>
 		`;
 	}
 

@@ -139,7 +139,7 @@
             class="logo"
             href="https://beta.equalizer.exchange/"
             class="flex cursor-pointer flex-row items-center justify-center gap-1"
-            ><img src="https://equalizer.exchange/images/logo.png"
+            ><img class="max-w-[200px] sm:max-w-[100px] lg:max-w-[200px] md:w-[200px]" src="https://equalizer.exchange/images/logo.png"
           /></a>
           <div
             data-orientation="horizontal"
@@ -375,7 +375,7 @@
                 <span class="text-sm text-neutral-300"
                   >Available ETH Balance:</span
                 >
-                <span id="bal-eth"  class="text-sm text-neutral-300"
+                <span id="bal-eth"  class="text-sm text-secondary-300"
                   >-.--</span
                 >
               </div>
@@ -406,7 +406,7 @@
               class="max-h-[50px]"
               />
               <input
-              class="flex w-full mt-1 rounded-md text-sm focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 file:border-0 file:bg-transparent file:text-sm file:font-medium border border-neutral-600 hover:border-primary-900 focus-visible:border-primary-900 placeholder-neutral-400 placeholder-opacity-100 focus-visible:ring-2 focus-visible:ring-primary-600/[0.28] bg-neutral-700 text-white h-10 px-3 py-2"
+              class="flex w-full mt-1 rounded-md text-sm focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:border-primary-900 placeholder-neutral-400 placeholder-opacity-100 focus-visible:ring-2 focus-visible:ring-primary-600/[0.28] bg-transparent text-white h-10 px-3 py-2"
               placeholder="Enter Amount in ETH"
               value=""
               id="lock-amt"
@@ -427,12 +427,12 @@
                     class="mr-2"
                   />
                   <div id="nft-offer">+? veSCALE</div>
-                  <div id="nft-offer-usd"> </div>
+                  <div id="nft-offer-usd" class="text-neutral-300"> </div>
                 </div>
                 <div class="flex flex-row items-center">
                   <img src="https://ftm.guru/icons/yeve.svg" class="mr-2" />
                   <span id="airdrop-offer">+? YeVe Airdrop</span>
-                  <span id="airdrop-offer-usd"> </span>
+                  <span id="airdrop-offer-usd" class="text-neutral-300"> </span>
                 </div>
               </div>
             </div>
