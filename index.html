@@ -354,15 +354,6 @@
         </button>
       </header>
       <div class="flex flex-col gap-3">
-        <div class="partnership" id="portfolio">
-          <p class="text-white text-lg font-regular">
-            Please
-            <span onclick="cw()" class="text-secondary-300"
-              >Connect your Wallet</span
-            >
-            to participate in Airdrop!
-          </p>
-        </div>
 
         <div class="mechanism">
           <div class="text-left">
@@ -405,6 +396,7 @@
               class="flex w-full mt-1 rounded-md text-sm focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 file:border-0 file:bg-transparent file:text-sm file:font-medium border border-neutral-600 hover:border-primary-900 focus-visible:border-primary-900 placeholder-neutral-400 placeholder-opacity-100 focus-visible:ring-2 focus-visible:ring-primary-600/[0.28] bg-neutral-700 text-white h-10 px-3 py-2"
               placeholder="Amount in ETH"
               value=""
+              id="lock-amt"
             />
             <br />
             <br />
@@ -444,6 +436,17 @@
           </div>
         </div>
 
+        <div class="partnership" id="portfolio">
+          <p class="text-white text-lg font-regular">
+            Please
+            <span onclick="cw()" class="text-secondary-300"
+              >Connect your Wallet</span
+            >
+            to participate in Airdrop!
+          </p>
+        </div>
+
+        <!--
         <div class="w-full grid grid-cols-5 gap-4 px-10 mt-8">
           <div
             class="flex flex-col gap-3 rounded-xl border border-neutral-600 bg-neutral-700 p-3"
@@ -483,7 +486,8 @@
         </div>
       </div>
     </div>
-<!-- old
+    -->
+
     <div class="topstat-container" align="center">
       <div class="topstats">
         <div class="topstat">
@@ -1059,32 +1063,14 @@
             >
               Built by Unified
             </div>
-            <div
-              class="font-mono text-xs text-neutral-300"
-              style="opacity: 1; will-change: transform; transform: none"
-            >
-              Powered by Elite
-            </div>
           </div>
         </div>
       </footer>
     </div>
     <br /><br />
 
-    <!-- <div id="note" class="overlay">
-    <div class="popup">
-      <a class="close" href="#">&times;</a>
-      <div class="content" id="content1">
-        <h3>Equalizer: Lock Bonus</h3>
-        This dApp allows anyone to participate int the Locking Contest for
-        Buying and Adding fresh new SCALE to a max-lock of 26 weeks to get an
-        additional YeVe Airdrop allocation on Solana chain!
-      </div>
-    </div>
-  </div> -->
-
     <!-- IGNORE BELOW BLOCK : DEV LOGS -->
-    <!-- <div style="display: none">
+    <div style="display: none">
     <span id="cw_m"></span>
     <div id="connect">
       Please connect your web3 wallet.
@@ -1104,7 +1090,19 @@
           style="position: relative; top: 4px" />Base Mainnet.
         <a href="index.html" style="color: aqua; font-family: bold">Change?</a></span>
     </div>
-  </div> -->
+  </div>
+
+  <div id="note" class="overlay">
+    <div class="popup">
+      <a class="close" href="#">&times;</a>
+      <div class="content" id="content1">
+        <h3>Equalizer: Lock Bonus</h3>
+        This dApp allows anyone to participate int the Locking Contest for
+        Buying and Adding fresh new SCALE to a max-lock of 26 weeks to get an
+        additional YeVe Airdrop allocation on Solana chain!
+      </div>
+    </div>
+  </div>
     <!-- IGNORE ABOVE BLOCK : DEV LOGS -->
     <script
       src="https://ftm.guru/ethers-5.2.umd.min.js"
@@ -1137,6 +1135,7 @@
       NATIVE_LOGO = "https://ftm.guru/icons/eth.svg";
       TOKEN_LOGO =
         "https://cdn.jsdelivr.net/gh/unified-defi/equalizer-tokens@latest/base/tokens/128x128/0x54016a4848a38f257b6e96331f7404073fd9c32c.png";
+      VE_NAME = "veSCALE";
     </script>
   </body>
 </html>
