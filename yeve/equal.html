@@ -3,16 +3,16 @@
   <meta charset="UTF-8" />
   <meta
     name="description"
-    content="Bonus Airdrops for Equalizer Holders!"
+    content="YeVe Airdrop for Equalizer Holders! Get YeVe by locking more EQUAL!"
   />
   <meta
     name="keywords"
-    content="Ftm.guru, Guru Network, Finance, Decentralized Finance, defi, Airdrop, SCALE, veNFT, Solidly, Equalizer, Fantom Opera, FTM"
+    content="Ftm.guru, Guru Network, Finance, Decentralized Finance, defi, Airdrop, EQUAL, veNFT, Solidly, Equalizer, Fantom Opera, FTM"
   />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta property="og:title" content="Equalizer Lock Bonus Events">
+  <meta property="og:title" content="Equalizer Lock Bonus Event">
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://ftm.guru/icons/equal.png">
+  <meta property="og:image" content="https://lock.equalizer.exchange/img/yeve-og.png">
   <meta property="og:url" content="https://lock.equalizer.exchange">
   <meta name="twitter:card" content="summary_large_image">
   <meta property="og:description" content="Earn Bonus Rewards from Special Equalizer Events!">
@@ -23,7 +23,7 @@
     <title>YeVe Airdrop for Equalizer Users!</title>
     <link
       rel="shortcut icon"
-      href="https://cdn.jsdelivr.net/gh/unified-defi/equalizer-tokens@latest/base/tokens/128x128/0x54016a4848a38f257b6e96331f7404073fd9c32c.png"
+      href="https://cdn.jsdelivr.net/gh/unified-defi/equalizer-tokens@latest/fantom/tokens/128x128/0x3fd3a0c85b70754efc07ac9ac0cbbdce664865a6.png"
     />
     <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">-->
     <link rel="stylesheet" href="index.css" />
@@ -369,107 +369,183 @@
       </header>
       <div class="flex flex-col gap-3">
 
+        <div class="mechanism">
+          <div class="text-left">
+            <p class="text-lg text-white">veEQUAL Lock Bonus</p>
+            <p class="text-sm text-neutral-300">
+              Get YeVe Airdrops by acquiring veEQUAL
+            </p>
+          </div>
+          <br />
+          <div class="input-amount">
+            <div class="flex flex-col gap-4">
+              <div class="flex flex-row w-full items-center justify-between">
+                <span class="text-sm text-neutral-300"
+                  >Available FTM Balance:</span
+                >
+                <span id="bal-eth"  class="text-sm text-secondary-300"
+                  >-.--</span
+                >
+              </div>
+              <div class="flex flex-row w-full items-center justify-between">
+                <a
+                  align="center"
+                  class="flex flex-row items-center justify-center text-white disabled:pointer-events-none border-gradient-primary bg-gradient-to-b from-primary-500 via-primary-700 to-primary-800 shadow-[0px_1px_0.5px_0px_#ffffff40_inset] outline outline-1 outline-offset-1 outline-primary-800 drop-shadow-[0px_1px_2px_0px_#00000029] transition-all hover:from-primary-600 hover:via-primary-700 hover:to-primary-800 focus-visible:ring-2 focus-visible:ring-primary-600/30 focus-visible:ring-offset-2 focus-visible:ring-offset-black disabled:text-primary-300 h-9 gap-2 rounded-md px-3 py-2 text-sm"
+                  target="_blank"
+                  href="https://base.equalizer.exchange/swap?fromToken=0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913&toToken=0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+                  >Get FTM on Equalizer</a
+                >
+              </div>
+            </div>
 
-    <div class="partnership" id="portfolio">
-        <p class="text-white text-lg font-regular">
-          Participate in
-          <span class="text-secondary-300">Special Equalizer Events</span>
-          and Earn Rewards!
-        </p>
+            <br />
+            <div class="hr-nft"></div>
+            <br />
+            <div class="flex flex-col gap-1">
+              <span class="mb-2 text-xs sm:text-sm text-white"
+              >How much veEQUAL do you want to buy & Lock?</span
+              >
+              <div
+              style="display: grid;grid-template-columns: max-content auto;"
+              class="flex flex-col gap-3 rounded-xl border border-neutral-600 bg-neutral-700 p-3"
+              >
+              <img
+              src="https://ftm.guru/icons/eth.svg"
+              class="max-h-[50px]"
+              />
+              <input
+              class="flex w-full mt-1 rounded-md text-sm focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:border-primary-900 placeholder-neutral-400 placeholder-opacity-100 focus-visible:ring-2 focus-visible:ring-primary-600/[0.28] bg-transparent text-white h-10 px-3 py-2"
+              placeholder="Enter Amount in FTM"
+              value=""
+              id="lock-amt"
+              />
+            </div>
+          </div>
+            <br />
+            <div class="flex flex-col">
+              <span id="offer-summary" class="mb-1 text-sm text-neutral-300"
+                >You will get</span
+              >
+              <div
+                class="flex flex-col gap-3 rounded-xl border border-neutral-600 bg-neutral-700 p-3"
+              >
+                <div class="flex flex-row items-center">
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/unified-defi/equalizer-tokens@latest/fantom/tokens/128x128/0x3fd3a0c85b70754efc07ac9ac0cbbdce664865a6.png"
+                    class="mr-2"
+                  />
+                  <div id="nft-offer">+? veEQUAL</div>
+                  <div id="nft-offer-usd" class="text-neutral-300"> </div>
+                </div>
+                <div class="flex flex-row items-center">
+                  <img src="https://ftm.guru/icons/yeve.svg" class="mr-2" />
+                  <span id="airdrop-offer">+? YeVe Airdrop</span>
+                  <span id="airdrop-offer-usd" class="text-neutral-300"> </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br />
+          <br />
+          <div style="margin-top: -25px" align="center">
+            <button
+              class="flex flex-row items-center justify-center text-white disabled:pointer-events-none border-gradient-primary bg-gradient-to-b from-primary-500 via-primary-700 to-primary-800 shadow-[0px_1px_0.5px_0px_#ffffff40_inset] outline outline-1 outline-offset-1 outline-primary-800 drop-shadow-[0px_1px_2px_0px_#00000029] transition-all hover:from-primary-600 hover:via-primary-700 hover:to-primary-800 focus-visible:ring-2 focus-visible:ring-primary-600/30 focus-visible:ring-offset-2 focus-visible:ring-offset-black disabled:text-primary-300 h-9 gap-2 rounded-md px-3 py-2 text-sm"
+              onclick="notice('2soon™ 4u, dear degen!?<br><br>Check your wallet connection!?');confirmbuylock()"
+            >
+              Let's Go!
+            </button>
+          </div>
+        </div>
+
+        <div class="partnership" id="portfolio">
+          <p class="text-white text-lg font-regular">
+            Please
+            <span onclick="cw()" class="text-secondary-300"
+              >Connect your Wallet</span
+            >
+            to participate in Airdrop!
+          </p>
+        </div>
+
+        <!--
+        <div class="w-full grid grid-cols-5 gap-4 px-10 mt-8">
+          <div
+            class="flex flex-col gap-3 rounded-xl border border-neutral-600 bg-neutral-700 p-3"
+          >
+            <p class="text-sm text-neutral-300">Airdrop Net Valuation</p>
+            <p class="text-md text-white">$160,000 USD</p>
+            <p class="text-md text-white">1,000,000 YeVe</p>
+          </div>
+          <div
+            class="flex flex-col gap-3 rounded-xl border border-neutral-600 bg-neutral-700 p-3"
+          >
+            <p class="text-sm text-neutral-300">Total Buy-ins on EQUAL</p>
+            <p class="text-md text-white" id="topstat-totbuy-usd">? USD</p>
+            <p class="text-md text-white" id="topstat-totbuy">? FTM</p>
+          </div>
+          <div
+            class="flex flex-col gap-3 rounded-xl border border-neutral-600 bg-neutral-700 p-3"
+          >
+            <p class="text-sm text-neutral-300">EQUAL Locked so far</p>
+            <p class="text-md text-white" id="topstat-totbuy-usd">? USD</p>
+            <p class="text-md text-white" id="topstat-totbuy">? EQUAL</p>
+          </div>
+          <div
+            class="flex flex-col gap-3 rounded-xl border border-neutral-600 bg-neutral-700 p-3"
+          >
+            <p class="text-sm text-neutral-300">Airdrop per 1 EQUAL</p>
+            <p class="text-md text-white" id="topstat-per-usd">? USD</p>
+            <p class="text-md text-white" id="topstat-per">? YeVe</p>
+          </div>
+          <div
+            class="flex flex-col gap-3 rounded-xl border border-neutral-600 bg-neutral-700 p-3"
+          >
+            <p class="text-sm text-neutral-300">Return on Investment</p>
+            <p class="text-md text-white" id="topstat-roi">1.? x</p>
+            <p class="text-md text-white" id="topstat-roi-apr">? %</p>
+          </div>
+        </div>
+      </div>
     </div>
+    -->
 
-    <div class="mechanism text-white text-lg font-regular" align="center" style="overflow:auto;width:80%;margin:auto">
-      <table>
-      	<thead>
-      	  <tr>
-      	    <td>Status</td>
-      	    <td>Timeline</td>
-      	    <td></td>
-      	    <td>Event Description</td>
-      	    <td>Peak Value of Rewards</td>
-      	    <td>Participants</td>
-      	  </tr>
-      	  <tr>
-      	    <td>.</td>
-      	    <td>.</td>
-      	    <td>.</td>
-      	    <td>.</td>
-      	    <td>.</td>
-      	    <td>.</td>
-      	  </tr>
-      	</thead>
-      	<tbody>
-      	  <tr onclick="window.location='./yeve/scale.html'">
-      	    <td>ACTIVE</td>
-      	    <td>Nov. 2024</td>
-      	    <td><img src="https://ftm.guru/icons/yeve.svg" width="20px"/> </td>
-      	    <td>YeVe Solana Genesis Event for SCALE on Base</td>
-      	    <td>$160,000</td>
-      	    <td>View</td>
-      	  </tr>
-      	  <tr onclick="window.location='./yeve/equal.html'">
-      	    <td>ACTIVE</td>
-      	    <td>Nov. 2024</td>
-      	    <td><img src="https://ftm.guru/icons/yeve.svg" width="20px"/> </td>
-      	    <td>YeVe Solana Genesis Event for EQUAL on Opera</td>
-      	    <td>$160,000</td>
-      	    <td>View</td>
-      	  </tr>
-      	  <tr onclick="window.location='.'">
-      	    <td>Finished</td>
-      	    <td>June 2023</td>
-      	    <td><img src="https://ftm.guru/icons/snek.png" width="20px"/> </td>
-      	    <td>SoliSnek Launch Airdrop</td>
-      	    <td>$250,000</td>
-      	    <td>129</td>
-      	  </tr>
-      	  <tr onclick="window.location='.'">
-      	    <td>Finished</td>
-      	    <td>Dec. 2023</td>
-      	    <td><img src="https://ftm.guru/icons/scale.png" width="20px"/> </td>
-      	    <td>Equalizer SCALE 20% Lock Bonus</td>
-      	    <td>$250,000</td>
-      	    <td>233</td>
-      	  </tr>
-      	  <tr onclick="window.location='.'">
-      	    <td>Finished</td>
-      	    <td>Dec. 2023</td>
-      	    <td><img src="https://ftm.guru/icons/scale.png" width="20px"/> </td>
-      	    <td>Equalizer EQUAL 15% Lock Bonus</td>
-      	    <td>$250,000</td>
-      	    <td>129</td>
-      	  </tr>
-      	  <tr onclick="window.location='.'">
-      	    <td>Finished</td>
-      	    <td>June 2023</td>
-      	    <td><img src="https://ftm.guru/icons/chr.png" width="20px"/> </td>
-      	    <td>Chronos Launch Airdrop</td>
-      	    <td>$1,250,000</td>
-      	    <td>171</td>
-      	  </tr>
-      	  <tr onclick="window.location='.'">
-      	    <td>Finished</td>
-      	    <td>June 2023</td>
-      	    <td><img src="https://ftm.guru/icons/chr.png" width="20px"/> </td>
-      	    <td><u>Some random Launch Airdrop.</u><br>This should ideally be a title followed by a short description.<br>Dont need a table really,<br>long horizontal tiles can work.<br>keep mobile users in mind pls</td>
-      	    <td>$1,250,000</td>
-      	    <td>1</td>
-      	  </tr>
-      	</tbody>
-      </table>
+    <div align="center">
+      <a href="https://yeve.fi" target="_blank">
+        <img width=="100%" src="../img/yeve-banner.png"/>
+      </a>
     </div>
 
     <div class="topstat-container" align="center">
       <div class="topstats">
         <div class="topstat">
-          <div id="">$2,160,000 USD</div>
-          <div id="">in 2 Years</div>
-          <div>Total Bonus Rewards Paid</div>
+          <div id="">$160,000 USD</div>
+          <div id="">1,000,000 YeVe</div>
+          <div>Airdrop Net Valuation</div>
         </div>
         <div class="topstat">
-          <div id="">7 Special Events</div>
-          <div id="">By 5 Parnters</div>
-          <div>For Equalizer Holders</div>
+          <div id="topstat-totbuy-usd">? USD</div>
+          <div id="topstat-totbuy">? FTM</div>
+          <div>Total Buy-ins on EQUAL</div>
+        </div>
+        <div class="topstat">
+          <div id="topstat-totlock-usd">? USD</div>
+          <div id="topstat-totlock">? EQUAL</div>
+          <div>EQUAL Locked so far</div>
+        </div>
+        <div class="topstat">
+          <div id="topstat-users">? Participants</div>
+          <div id="topstat-interactions">? Locks Created</div>
+          <div>Airdrop Activity Index</div>
+        </div>
+        <div class="topstat" style="display:none">
+          <div id="topstat-per-usd">? USD</div>
+          <div id="topstat-per">? YeVe</div>
+          <div>Airdrop per 1 EQUAL</div>
+        </div>
+        <div class="topstat">
+          <div id="topstat-roi">1.? x</div>
+          <div id="topstat-roi-apr">? %</div>
+          <div>Return on Investment</div>
         </div>
       </div>
     </div>
@@ -477,7 +553,7 @@
     <!-- <div class="extra">
       <small id="stats">
         <br />
-        <br />Current Bonus: ? % <br />Available Incentives: ? SCALE
+        <br />Current Bonus: ? % <br />Available Incentives: ? EQUAL
       </small>
       <h1>
         <span onclick='window.location="https://equalizer.exchange"'
@@ -817,7 +893,7 @@
               <h6
                 class="tracking-0.48 mb-6 text-xs font-medium text-neutral-300"
               >
-                SCALE on Base
+                EQUAL on Base
               </h6>
               <ul class="flex flex-col gap-3">
                 <li>
@@ -1055,7 +1131,7 @@
       <div class="content" id="content1">
         <h3>Equalizer: Lock Bonus</h3>
         This dApp allows anyone to participate int the Locking Contest for
-        Buying and Adding fresh new SCALE to a max-lock of 26 weeks to get an
+        Buying and Adding fresh new EQUAL to a max-lock of 26 weeks to get an
         additional YeVe Airdrop allocation on Solana chain!
       </div>
     </div>
@@ -1076,23 +1152,23 @@
     ></script>
     <script src="index.js?v=2"></script>
     <script>
-      CHAINID = 8453;
-      RPC_URL = "https://mainnet.base.org";
-      EXPLORE = "https://basescan.org/";
-      EXPLORA = "https://basescan.org/address/";
-      EXPLORT = "https://basescan.org/tx/";
-      CHAIN_NAME = "Base Mainnet";
+      CHAINID = 250;
+      RPC_URL = "https://rpc.ankr.com/fantom";
+      EXPLORE = "https://ftmscan.com/";
+      EXPLORA = "https://ftmscan.com/address/";
+      EXPLORT = "https://ftmscan.com/tx/";
+      CHAIN_NAME = "Fantom Opera";
       VENFT = "0x28c9c71c776a1203000b56c0cca48bef1cd51c53";
-      ELB = "0x4Bcb116341B0dE791a0105e6CaEbb93b9b12AAF9"; //0xb47D9e866C98c347c8d93633c0D0aC0374546454
+      ELB = "0xADaB9292c969D659b6B6776C6f2283C98FCD6fCA";//0x4Bcb116341B0dE791a0105e6CaEbb93b9b12AAF9"; //0xb47D9e866C98c347c8d93633c0D0aC0374546454
       ROUTER = "0x2f87bf58d5a9b2efade55cdbd46153a0902be6fa"; //0x33da53f731458d6bc970b0c5fcbb0b3db4aaa470
       WNATIVE = "0x4200000000000000000000000000000000000006";
       TOKEN = "0x54016a4848a38f257B6E96331F7404073Fd9c32C";
-      NATIVE_NAME = "ETH";
-      TOKEN_NAME = "SCALE";
-      NATIVE_LOGO = "https://ftm.guru/icons/eth.svg";
+      NATIVE_NAME = "FTM";
+      TOKEN_NAME = "EQUAL";
+      NATIVE_LOGO = "https://ftm.guru/icons/ftm.svg";
       TOKEN_LOGO =
-        "https://cdn.jsdelivr.net/gh/unified-defi/equalizer-tokens@latest/base/tokens/128x128/0x54016a4848a38f257b6e96331f7404073fd9c32c.png";
-      VE_NAME = "veSCALE";
+        "https://cdn.jsdelivr.net/gh/unified-defi/equalizer-tokens@latest/fantom/tokens/128x128/0x3fd3a0c85b70754efc07ac9ac0cbbdce664865a6.png";
+      VE_NAME = "ve" + TOKEN_NAME;
     </script>
   </body>
 </html>
