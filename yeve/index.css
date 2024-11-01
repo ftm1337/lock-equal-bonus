@@ -16,20 +16,20 @@
 }
 @font-face {
   font-family: regular;
-  src: url("fonts/Inter-Regular.ttf");
+  src: url("../fonts/Inter-Regular.ttf");
 }
 @font-face {
   font-family: regular-bold;
-  src: url("fonts/Inter-Bold.ttf");
+  src: url("../fonts/Inter-Bold.ttf");
 }
 
 @font-face {
   font-family: regular_italic;
-  src: url("fonts/Inter-Regular.ttf");
+  src: url("../fonts/Inter-Regular.ttf");
 }
 @font-face {
   font-family: Etna;
-  src: url("fonts/etna.otf");
+  src: url("../fonts/etna.otf");
 }
 
 * {
