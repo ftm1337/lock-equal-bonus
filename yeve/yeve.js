@@ -236,6 +236,8 @@ async function gubs() {
 }
 
 async function confirmbuylock() {
+	elbp = new ethers.Contract(ELB,["function info(address) external view returns(uint,uint,uint,uint,uint,uint,uint,uint)"],signer);
+	rd = await elbp.info(window.ethereum.selectedAddress);
 	if(Number(rd[1]) >= 20) {
 		notice(`<h2>You have 20+ veNFTs!</h2>Maximum NFTs allowed in a single wallet are 20. Please transfer or merge some nfts before locking!`);
 		return;
