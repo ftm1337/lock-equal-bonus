@@ -236,6 +236,8 @@ async function gubs() {
 }
 
 async function confirmbuylock() {
+	elbp = new ethers.Contract(ELB,["function info(address) external view returns(uint,uint,uint,uint,uint,uint,uint,uint)"],signer);
+	rd = await elbp.info(window.ethereum.selectedAddress);
 	if(Number(rd[1]) >= 20) {
 		notice(`<h2>You have 20+ veNFTs!</h2>Maximum NFTs allowed in a single wallet are 20. Please transfer or merge some nfts before locking!`);
 		return;
@@ -268,13 +270,24 @@ async function confirmbuylock() {
 
 async function buylock(amt, min) {
 	notice(`
-		<h3>Order Summary</h3>
-		<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}"> Buying <u>${(Number(min)/1e18).toFixed(6)} ${TOKEN_NAME}</u>
-		<br><br>
-		<img style='height:20px;position:relative;top:4px' src="${NATIVE_LOGO}"> Using <u>${(Number(amt)/1e18).toFixed(6)} ${NATIVE_NAME}</u>
-		<br><br>
-		<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}"> for a minimum of <u>${(Number(min)*99/100/1e18).toFixed(6)} ${TOKEN_NAME}</u>
-		<br> as well as a nice YeVe Airdrop on Solana!
+		<h2>Order Summary</h2>
+		<br>
+		<div class="flex flex-row gap-2">
+			<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}"> Buying <u>${(Number(min)/1e18).toFixed(6)} ${TOKEN_NAME}</u>
+		</div>
+		<br>
+		<div class="flex flex-row gap-2">
+			<img style='height:20px;position:relative;top:4px' src="${NATIVE_LOGO}"> Using <u>${(Number(amt)/1e18).toFixed(6)} ${NATIVE_NAME}</u>
+		</div>
+		<br>
+		<div class="flex flex-row gap-2">
+			<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}"> for a minimum of <u>${(Number(min)*99/100/1e18).toFixed(6)} ${TOKEN_NAME}</u>
+		</div>
+		<br>
+		<div class="flex flex-row gap-2">
+			<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}">  as well as a nice YeVe Airdrop on Solana!
+		</div>
+		<br>
 		<br>
 		<h4><u><i>Please Confirm this transaction in your wallet!</i></u></h4>
 	`)
@@ -283,12 +296,23 @@ async function buylock(amt, min) {
 	console.log(_tr)
 	notice(`
 		<h3>Transaction Submitted!</h3>
-		<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}"> Buying <u>${(Number(min)/1e18).toFixed(6)} ${TOKEN_NAME}</u>
-		<br><br>
-		<img style='height:20px;position:relative;top:4px' src="${NATIVE_LOGO}"> Using <u>${(Number(amt)/1e18).toFixed(6)} ${NATIVE_NAME}</u>
-		<br><br>
-		<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}"> for a minimum of <u>${(Number(min)*99/100/1e18).toFixed(6)} ${TOKEN_NAME}</u>
-		<br> as well as a nice YeVe Airdrop on Solana!
+		<br>
+		<div class="flex flex-row gap-2">
+			<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}"> Buying <u>${(Number(min)/1e18).toFixed(6)} ${TOKEN_NAME}</u>
+		</div>
+		<br>
+		<div class="flex flex-row gap-2">
+			<img style='height:20px;position:relative;top:4px' src="${NATIVE_LOGO}"> Using <u>${(Number(amt)/1e18).toFixed(6)} ${NATIVE_NAME}</u>
+		</div>
+		<br>
+		<div class="flex flex-row gap-2">
+			<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}"> for a minimum of <u>${(Number(min)*99/100/1e18).toFixed(6)} ${TOKEN_NAME}</u>
+		</div>
+		<br>
+		<div class="flex flex-row gap-2">
+			<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}">  as well as a nice YeVe Airdrop on Solana!
+		</div>
+		<br>
 		<br>
 		<h4><a target="_blank" href="${EXPLORT + _tr.hash}">View on Explorer</a></h4>
 	`)
@@ -296,12 +320,23 @@ async function buylock(amt, min) {
 	console.log(_tw)
 	notice(`
 		<h3>✅ Order Completed Successfully! </h3>
-		<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}"> Buying <u>${(Number(min)/1e18).toFixed(6)} ${TOKEN_NAME}</u>
-		<br><br>
-		<img style='height:20px;position:relative;top:4px' src="${NATIVE_LOGO}"> Using <u>${(Number(amt)/1e18).toFixed(6)} ${NATIVE_NAME}</u>
-		<br><br>
-		<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}"> for a minimum of <u>${(Number(min)*99/100/1e18).toFixed(6)} ${TOKEN_NAME}</u>
-		<br> as well as a nice YeVe Airdrop on Solana!
+		<br>
+		<div class="flex flex-row gap-2">
+			<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}"> Buying <u>${(Number(min)/1e18).toFixed(6)} ${TOKEN_NAME}</u>
+		</div>
+		<br>
+		<div class="flex flex-row gap-2">
+			<img style='height:20px;position:relative;top:4px' src="${NATIVE_LOGO}"> Using <u>${(Number(amt)/1e18).toFixed(6)} ${NATIVE_NAME}</u>
+		</div>
+		<br>
+		<div class="flex flex-row gap-2">
+			<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}"> for a minimum of <u>${(Number(min)*99/100/1e18).toFixed(6)} ${TOKEN_NAME}</u>
+		</div>
+		<br>
+		<div class="flex flex-row gap-2">
+			<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}">  as well as a nice YeVe Airdrop on Solana!
+		</div>
+		<br>
 		<br>
 		<h4><a target="_blank" href="${EXPLORT + _tr.hash}">✅ View on Explorer</a></h4>
 	`)
