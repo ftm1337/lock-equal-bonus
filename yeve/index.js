@@ -269,11 +269,20 @@ async function confirmbuylock() {
 async function buylock(amt, min) {
 	notice(`
 		<h3>Order Summary</h3>
-		<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}"> Buying <u>${(Number(min)/1e18).toFixed(6)} ${TOKEN_NAME}</u>
+          <div class="flex flex-row gap-2">
+            <img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}"> 
+            Buying <u>${(Number(min)/1e18).toFixed(6)} ${TOKEN_NAME}</u>
+          </div>
 		<br><br>
-		<img style='height:20px;position:relative;top:4px' src="${NATIVE_LOGO}"> Using <u>${(Number(amt)/1e18).toFixed(6)} ${NATIVE_NAME}</u>
+    <div class="flex flex-row gap-2">
+      <img style='height:20px;position:relative;top:4px' src="${NATIVE_LOGO}"> 
+      Using <u>${(Number(amt)/1e18).toFixed(6)} ${NATIVE_NAME}</u>
+    </div>
 		<br><br>
-		<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}"> for a minimum of <u>${(Number(min)*99/100/1e18).toFixed(6)} ${TOKEN_NAME}</u>
+    <div class="flex flex-row gap-2">
+      <img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}"> 
+      for a minimum of <u>${(Number(min)*99/100/1e18).toFixed(6)} ${TOKEN_NAME}</u>
+    </div>
 		<br> as well as a nice YeVe Airdrop on Solana!
 		<br>
 		<h4><u><i>Please Confirm this transaction in your wallet!</i></u></h4>
