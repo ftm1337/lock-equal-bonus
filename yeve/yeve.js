@@ -228,7 +228,7 @@ async function dexstats() {
 }
 
 async function gubs() {
-	elbp = new ethers.Contract(ELB,["function info(address) external view returns(uint,uint,uint,uint,uint,uint,uint,uint)"],signer);
+	elbp = new ethers.Contract(ELB,["function info(address) external view returns(uint[11] memory)"],signer);
 	rd = await elbp.info(window.ethereum.selectedAddress);
 	$("bal-eth").innerHTML = (Number(rd[0])/1e18).toFixed(6);
 	if(Number(rd[1]) >= 20) notice(`<h2>You have 20+ veNFTs!</h2>Maximum NFTs allowed in a single wallet are 20. Please transfer or merge some nfts before locking!`);
@@ -236,7 +236,7 @@ async function gubs() {
 }
 
 async function confirmbuylock() {
-	elbp = new ethers.Contract(ELB,["function info(address) external view returns(uint,uint,uint,uint,uint,uint,uint,uint)"],signer);
+	elbp = new ethers.Contract(ELB,["function info(address) external view returns(uint[11] memory)"],signer);
 	rd = await elbp.info(window.ethereum.selectedAddress);
 	if(Number(rd[1]) >= 20) {
 		notice(`<h2>You have 20+ veNFTs!</h2>Maximum NFTs allowed in a single wallet are 20. Please transfer or merge some nfts before locking!`);
@@ -250,6 +250,7 @@ async function confirmbuylock() {
 	min = await rtr.getAmountOut(amt, WNATIVE, TOKEN, false);
 	notice(`
 		<h2>Final Check</h2>
+		<br>
 		<h3>
 			You are spending
 			<u> ${(Number(amt)/1e18).toFixed(6)} ${NATIVE_NAME} </u>
@@ -273,7 +274,7 @@ async function buylock(amt, min) {
 		<h2>Order Summary</h2>
 		<br>
 		<div class="flex flex-row gap-2">
-			<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}"> Buying <u>${(Number(min)/1e18).toFixed(6)} ${TOKEN_NAME}</u>
+			<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}"> Buying <u>${(Number(min)/1e18).toFixed(6)} ${VE_NAME}</u>
 		</div>
 		<br>
 		<div class="flex flex-row gap-2">
@@ -281,11 +282,11 @@ async function buylock(amt, min) {
 		</div>
 		<br>
 		<div class="flex flex-row gap-2">
-			<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}"> for a minimum of <u>${(Number(min)*99/100/1e18).toFixed(6)} ${TOKEN_NAME}</u>
+			<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}"> filled with a minimum of <u>${(Number(min)*99/100/1e18).toFixed(6)} ${TOKEN_NAME}</u>
 		</div>
 		<br>
 		<div class="flex flex-row gap-2">
-			<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}">  as well as a nice YeVe Airdrop on Solana!
+			<img style='height:20px;position:relative;top:4px' src="${TEARNED_LOGO}">  as well as a nice YeVe Airdrop on Solana!
 		</div>
 		<br>
 		<br>
@@ -295,10 +296,10 @@ async function buylock(amt, min) {
 	let _tr = await elb.buyAndLock( BigInt( Math.floor( Number(min)*99/100 ) ) , {value: BigInt(Math.floor(amt - (amt%1_000_000_000))) } );
 	console.log(_tr)
 	notice(`
-		<h3>Transaction Submitted!</h3>
+		<h2>Transaction Submitted!</h2>
 		<br>
 		<div class="flex flex-row gap-2">
-			<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}"> Buying <u>${(Number(min)/1e18).toFixed(6)} ${TOKEN_NAME}</u>
+			<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}"> Buying <u>${(Number(min)/1e18).toFixed(6)} ${VE_NAME}</u>
 		</div>
 		<br>
 		<div class="flex flex-row gap-2">
@@ -306,11 +307,11 @@ async function buylock(amt, min) {
 		</div>
 		<br>
 		<div class="flex flex-row gap-2">
-			<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}"> for a minimum of <u>${(Number(min)*99/100/1e18).toFixed(6)} ${TOKEN_NAME}</u>
+			<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}"> filled with a minimum of <u>${(Number(min)*99/100/1e18).toFixed(6)} ${TOKEN_NAME}</u>
 		</div>
 		<br>
 		<div class="flex flex-row gap-2">
-			<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}">  as well as a nice YeVe Airdrop on Solana!
+			<img style='height:20px;position:relative;top:4px' src="${TEARNED_LOGO}">  as well as a nice YeVe Airdrop on Solana!
 		</div>
 		<br>
 		<br>
@@ -319,10 +320,10 @@ async function buylock(amt, min) {
 	_tw = await _tr.wait()
 	console.log(_tw)
 	notice(`
-		<h3>✅ Order Completed Successfully! </h3>
+		<h2>✅ Order Completed Successfully! </h2>
 		<br>
 		<div class="flex flex-row gap-2">
-			<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}"> Buying <u>${(Number(min)/1e18).toFixed(6)} ${TOKEN_NAME}</u>
+			<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}"> Buying <u>${(Number(min)/1e18).toFixed(6)} ${VE_NAME}</u>
 		</div>
 		<br>
 		<div class="flex flex-row gap-2">
@@ -330,11 +331,11 @@ async function buylock(amt, min) {
 		</div>
 		<br>
 		<div class="flex flex-row gap-2">
-			<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}"> for a minimum of <u>${(Number(min)*99/100/1e18).toFixed(6)} ${TOKEN_NAME}</u>
+			<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}"> filled with a minimum of <u>${(Number(min)*99/100/1e18).toFixed(6)} ${TOKEN_NAME}</u>
 		</div>
 		<br>
 		<div class="flex flex-row gap-2">
-			<img style='height:20px;position:relative;top:4px' src="${TOKEN_LOGO}">  as well as a nice YeVe Airdrop on Solana!
+			<img style='height:20px;position:relative;top:4px' src="${TEARNED_LOGO}">  as well as a nice YeVe Airdrop on Solana!
 		</div>
 		<br>
 		<br>
