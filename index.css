@@ -1267,7 +1267,7 @@ input:focus {
 
 .topstat div:first-child {
   font-family: bold;
-  font-size: 1em;
+  font-size: 1.5em;
 }
 
 .topstat div:nth-child(2) {
