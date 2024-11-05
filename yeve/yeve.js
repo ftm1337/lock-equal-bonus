@@ -183,7 +183,7 @@ async function drefresh() {
 					${((STATE.ulk/STATE.tlk)*STATE.ad).toLocaleString('fullwide', { maximumFractionDigits: 2})}
 
 				</span>
-				YeVe,
+				${TEARNED_NAME},
 				<br>
 				worth
 				<span class="text-secondary-300">
@@ -210,7 +210,7 @@ async function dexstats() {
 						let ve = (Number(r) / 1e18);
 						$("nft-offer").innerHTML = "+" + ve.toLocaleString('fullwide', { maximumFractionDigits: ve>=1e4?0:2}) + " " + VE_NAME;
 						$("nft-offer-usd").innerHTML = ", worth $" + (ve*STATE.tpu).toLocaleString('fullwide', { maximumFractionDigits: ve>=1e4?0:2})+"";
-						$("airdrop-offer").innerHTML = "+" + (ve/(ve+STATE.tlk)*STATE.ad).toLocaleString('fullwide', { maximumFractionDigits: 2}) + " YeVe";
+						$("airdrop-offer").innerHTML = "+" + (ve/(ve+STATE.tlk)*STATE.ad).toLocaleString('fullwide', { maximumFractionDigits: 2}) + " " + TEARNED_NAME;
 						$("airdrop-offer-usd").innerHTML = ", worth $" + (ve/(ve+STATE.tlk)*STATE.adu).toLocaleString('fullwide', { maximumFractionDigits: 2})+"";
 						$("offer-summary").innerHTML = `
 							With
@@ -260,7 +260,7 @@ async function confirmbuylock() {
 			<u> ${(Number(min)/1e18).toFixed(6)} ${TOKEN_NAME} </u>
 		</h3>
 		<h3>
-			<i> And a nice YeVe Airdrop! </i>
+			<i> And a nice ${PARTNER_NAME} Airdrop! </i>
 		</h3>
 		<br>
 		<div align="center">
@@ -286,7 +286,7 @@ async function buylock(amt, min) {
 		</div>
 		<br>
 		<div class="flex flex-row gap-2">
-			<img style='height:20px;position:relative;top:4px' src="${TEARNED_LOGO}">  as well as a nice YeVe Airdrop on Solana!
+			<img style='height:20px;position:relative;top:4px' src="${TEARNED_LOGO}">  as well as a nice ${PARTNER_NAME} on Solana!
 		</div>
 		<br>
 		<br>
@@ -311,7 +311,7 @@ async function buylock(amt, min) {
 		</div>
 		<br>
 		<div class="flex flex-row gap-2">
-			<img style='height:20px;position:relative;top:4px' src="${TEARNED_LOGO}">  as well as a nice YeVe Airdrop on Solana!
+			<img style='height:20px;position:relative;top:4px' src="${TEARNED_LOGO}">  as well as a nice ${PARTNER_NAME} Airdrop on Solana!
 		</div>
 		<br>
 		<br>
@@ -335,7 +335,7 @@ async function buylock(amt, min) {
 		</div>
 		<br>
 		<div class="flex flex-row gap-2">
-			<img style='height:20px;position:relative;top:4px' src="${TEARNED_LOGO}">  as well as a nice YeVe Airdrop on Solana!
+			<img style='height:20px;position:relative;top:4px' src="${TEARNED_LOGO}">  as well as a nice ${PARTNER_NAME} Airdrop on Solana!
 		</div>
 		<br>
 		<br>
