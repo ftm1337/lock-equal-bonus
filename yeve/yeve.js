@@ -207,6 +207,7 @@ async function dexstats() {
 			.then( () => {
 				tr.getAmountOut(tin, WNATIVE, TOKEN)
 					.then(r => {
+						r=r[0];
 						let ve = (Number(r) / 1e18);
 						$("nft-offer").innerHTML = "+" + ve.toLocaleString('fullwide', { maximumFractionDigits: ve>=1e4?0:2}) + " " + VE_NAME;
 						$("nft-offer-usd").innerHTML = ", worth $" + (ve*STATE.tpu).toLocaleString('fullwide', { maximumFractionDigits: ve>=1e4?0:2})+"";
@@ -248,6 +249,7 @@ async function confirmbuylock() {
 	amt = amt - (amt%1_000_000_000n);
 	rtr = new ethers.Contract(ROUTER, ["function getAmountOut(uint amountIn, address tokenIn, address tokenOut) public view returns (uint amount, bool stable)"], provider);
 	min = await rtr.getAmountOut(amt, WNATIVE, TOKEN);
+	min = min[0];
 	notice(`
 		<h2>Final Check</h2>
 		<br>
