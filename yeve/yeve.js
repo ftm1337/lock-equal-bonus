@@ -205,7 +205,7 @@ async function dexstats() {
 		tin = tin - (tin%1_000_000_000n);
 		drefresh()
 			.then( () => {
-				tr.getAmountOut(tin, WNATIVE, TOKEN, false)
+				tr.getAmountOut(tin, WNATIVE, TOKEN)
 					.then(r => {
 						let ve = (Number(r) / 1e18);
 						$("nft-offer").innerHTML = "+" + ve.toLocaleString('fullwide', { maximumFractionDigits: ve>=1e4?0:2}) + " " + VE_NAME;
