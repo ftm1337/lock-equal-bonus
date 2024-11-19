@@ -64,7 +64,7 @@ async function basetrip()
         		blockExplorerUrls: [EXPLORE.split("/address")[0]]
     		}]
 		});
-		window.location.reload
+		window.location.reload()
 	}
 	cw()
 	drefresh()
@@ -162,7 +162,7 @@ async function drefresh() {
 		int: Number(rdp[10]) - 1,
 	};
 
-	$("topstat-totbuy").innerHTML = (STATE.tby).toLocaleString('fullwide', { maximumFractionDigits: 4}) + " ETH"
+	$("topstat-totbuy").innerHTML = (STATE.tby).toLocaleString('fullwide', { maximumFractionDigits: 4}) + " " + NATIVE_NAME;
 	$("topstat-totbuy-usd").innerHTML = "$"+(STATE.tby*STATE.cu).toLocaleString('fullwide', { maximumFractionDigits: 2}) +" USD"
 	$("topstat-totlock").innerHTML =  (STATE.tlk).toLocaleString('fullwide', { maximumFractionDigits: 0}) + " " + TOKEN_NAME
 	$("topstat-totlock-usd").innerHTML = "$"+(STATE.tlk*STATE.tpu).toLocaleString('fullwide', { maximumFractionDigits: 2}) +" USD"
@@ -216,7 +216,7 @@ async function dexstats() {
 						$("offer-summary").innerHTML = `
 							With
 							${(Number(tin)/1e18).toLocaleString('fullwide', { maximumFractionDigits: 4})}
-							ETH
+							${NATIVE_NAME}
 							($<u>${(Number(tin)/1e18*STATE.cu).toLocaleString('fullwide', { maximumFractionDigits: 0})}</u>),
 							you could get
 							$<u>${((ve/(ve+STATE.tlk)*STATE.adu)+(ve*STATE.tpu)).toLocaleString('fullwide', { maximumFractionDigits: 0})}</u>!
