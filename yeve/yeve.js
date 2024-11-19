@@ -198,7 +198,7 @@ async function drefresh() {
 }
 
 async function dexstats() {
-	let tr = new ethers.Contract(ROUTER, ["function getAmountOut(uint amountIn, address tokenIn, address tokenOut, bool stable) public view returns (uint amount)"], provider);
+	let tr = new ethers.Contract(ROUTER, ["function getAmountOut(uint amountIn, address tokenIn, address tokenOut) public view returns (uint amount, bool stable)"], provider);
 	if(!(aval == $("lock-amt").value)) {
 		aval = $("lock-amt").value;
 		let tin = BigInt( Math.floor( aval * 1e18 ));
@@ -247,7 +247,7 @@ async function confirmbuylock() {
 	amt = BigInt( Math.floor( _am * 1e18 ));
 	amt = amt - (amt%1_000_000_000n);
 	rtr = new ethers.Contract(ROUTER, ["function getAmountOut(uint amountIn, address tokenIn, address tokenOut) public view returns (uint amount, bool stable)"], provider);
-	min = await rtr.getAmountOut(amt, WNATIVE, TOKEN, false);
+	min = await rtr.getAmountOut(amt, WNATIVE, TOKEN);
 	notice(`
 		<h2>Final Check</h2>
 		<br>
