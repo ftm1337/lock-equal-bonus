@@ -246,7 +246,7 @@ async function confirmbuylock() {
 	if(!isFinite(_am)){ notice(`<h2>Invalid Input~</h2>Your input: ${_am}`); return;}
 	amt = BigInt( Math.floor( _am * 1e18 ));
 	amt = amt - (amt%1_000_000_000n);
-	rtr = new ethers.Contract(ROUTER, ["function getAmountOut(uint amountIn, address tokenIn, address tokenOut, bool stable) public view returns (uint amount)"], provider);
+	rtr = new ethers.Contract(ROUTER, ["function getAmountOut(uint amountIn, address tokenIn, address tokenOut) public view returns (uint amount, bool stable)"], provider);
 	min = await rtr.getAmountOut(amt, WNATIVE, TOKEN, false);
 	notice(`
 		<h2>Final Check</h2>
