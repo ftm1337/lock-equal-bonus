@@ -168,8 +168,8 @@ async function drefresh() {
 	$("topstat-totlock-usd").innerHTML = "$"+(STATE.tlk*STATE.tpu).toLocaleString('fullwide', { maximumFractionDigits: 2}) +" USD"
 	$("topstat-per").innerHTML = (STATE.ad/STATE.tlk).toLocaleString('fullwide', { maximumFractionDigits: 2})
 	$("topstat-per-usd").innerHTML = "$"+(STATE.adu/STATE.tlk).toLocaleString('fullwide', { maximumFractionDigits: 2}) +" USD"
-	$("topstat-roi").innerHTML = (1+STATE.adu/Math.min(STATE.tlk*STATE.tpu, STATE.tby*STATE.cu)).toLocaleString('fullwide', { maximumFractionDigits: 2})+"x"
-	$("topstat-roi-apr").innerHTML = (STATE.adu/Math.min(STATE.tlk*STATE.tpu, STATE.tby*STATE.cu)*100).toLocaleString('fullwide', { maximumFractionDigits: 2})+"%"
+	$("topstat-roi").innerHTML = (1+STATE.adu/(STATE.tby*STATE.cu)).toLocaleString('fullwide', { maximumFractionDigits: 2})+"x"
+	$("topstat-roi-apr").innerHTML = (STATE.adu/(STATE.tby*STATE.cu)*100).toLocaleString('fullwide', { maximumFractionDigits: 2})+"%"
 	$("topstat-users").innerHTML =  (STATE.ppl).toLocaleString('fullwide', { maximumFractionDigits: 0}) + " Participants"
 	$("topstat-interactions").innerHTML =  (STATE.int).toLocaleString('fullwide', { maximumFractionDigits: 0}) + "  Locks Created"
 
@@ -180,14 +180,14 @@ async function drefresh() {
 			<h2>Your expected Airdrop:</h2>
 			<h1 style="margin-top:auto;">
 				<span class="text-secondary-300">
-					${( (Math.max(STATE.ulk/STATE.tlk, STATE.uby/STATE.tby) * STATE.ad) ).toLocaleString('fullwide', { maximumFractionDigits: 2})}
+					${( (Math.max(STATE.uby/STATE.tby) * STATE.ad) ).toLocaleString('fullwide', { maximumFractionDigits: 2})}
 
 				</span>
 				${TEARNED_NAME},
 				<br>
 				worth
 				<span class="text-secondary-300">
-					$${( (Math.max(STATE.ulk/STATE.tlk, STATE.uby/STATE.tby) * STATE.adu) ).toLocaleString('fullwide', { maximumFractionDigits: 2})}
+					$${( (Math.max(STATE.uby/STATE.tby) * STATE.adu) ).toLocaleString('fullwide', { maximumFractionDigits: 2})}
 				</span>
 				!
 			</h1>
